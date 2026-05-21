@@ -1,0 +1,534 @@
+@import "tailwindcss";
+
+/*
+  CareEasy landing global design tokens.
+
+  Direction:
+  - Warm but clean
+  - Modern but not flashy
+  - Minimal premium care-service tone
+*/
+:root {
+  color-scheme: only light;
+
+  --care-bg: #fbf4ea;
+  --care-bg-soft: #fff8f1;
+  --care-bg-card: #ffffff;
+
+  --care-primary: #e95513;
+  --care-primary-dark: #bf430d;
+  --care-primary-soft: #fff0e7;
+
+  --care-text: #202426;
+  --care-text-soft: #3b3631;
+  --care-muted: #756b62;
+  --care-muted-light: #9d9288;
+
+  --care-border: #eadccd;
+  --care-border-soft: rgba(234, 220, 205, 0.68);
+
+  --care-shadow-soft: 0 10px 28px rgba(32, 36, 38, 0.07);
+  --care-shadow-card: 0 18px 48px rgba(32, 36, 38, 0.09);
+}
+
+html {
+  color-scheme: only light;
+
+  scroll-behavior: smooth;
+  background: var(--care-bg);
+}
+
+body {
+  color-scheme: only light;
+
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(233, 85, 19, 0.07),
+      transparent 30rem
+    ),
+    linear-gradient(180deg, #fff9f2 0%, var(--care-bg) 46%, #fffaf6 100%);
+  color: var(--care-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(233, 85, 19, 0.16);
+}
+
+
+input,
+textarea,
+select,
+button {
+  color-scheme: only light;
+  background-color: #ffffff;
+  color: #202426;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(233, 85, 19, 0.5);
+  outline-offset: 3px;
+}
+
+/*
+  공통 인터랙션.
+  과한 튐 없이 살짝 올라오는 정도만 유지합니다.
+*/
+.careeasy-pressable {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+.careeasy-pressable:hover {
+  transform: translateY(-1px);
+}
+
+.careeasy-pressable:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/*
+  절제된 CTA.
+  그라데이션과 과한 발광 효과를 제거하고, 명확한 대비만 줍니다.
+*/
+.careeasy-cta-primary {
+  border: 1px solid var(--care-primary);
+  background: var(--care-primary);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(233, 85, 19, 0.18);
+}
+
+.careeasy-cta-primary:hover {
+  border-color: var(--care-primary-dark);
+  background: var(--care-primary-dark);
+  box-shadow: 0 14px 30px rgba(233, 85, 19, 0.22);
+}
+
+.careeasy-cta-secondary {
+  border: 1px solid var(--care-border);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--care-text);
+  box-shadow: 0 8px 20px rgba(32, 36, 38, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.careeasy-cta-secondary:hover {
+  border-color: rgba(233, 85, 19, 0.32);
+  background: #ffffff;
+  color: var(--care-primary-dark);
+  box-shadow: 0 12px 26px rgba(32, 36, 38, 0.08);
+}
+
+/*
+  버튼처럼 보이지 않는 섹션 라벨.
+  기존 pill 느낌을 줄이고, 고급스러운 작은 라벨로 정리합니다.
+*/
+.careeasy-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--care-primary-dark);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.careeasy-kicker::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--care-primary);
+  box-shadow: 0 0 0 5px rgba(233, 85, 19, 0.1);
+}
+
+/*
+  차분한 카드 스타일.
+  hover는 있지만 싼티나는 광택이나 강한 glow는 넣지 않습니다.
+*/
+.careeasy-clean-card {
+  border: 1px solid var(--care-border-soft);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--care-shadow-soft);
+  backdrop-filter: blur(12px);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease;
+}
+
+.careeasy-clean-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(233, 85, 19, 0.24);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--care-shadow-card);
+}
+
+/*
+  첫 화면 슬라이드 문구 전환.
+*/
+.careeasy-intro-copy {
+  transition:
+    opacity 680ms ease,
+    transform 680ms ease,
+    filter 680ms ease;
+  will-change: opacity, transform, filter;
+}
+
+.careeasy-intro-copy-active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  pointer-events: auto;
+}
+
+.careeasy-intro-copy-inactive {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+/*
+  첫 화면 배경 이미지 전환.
+*/
+.careeasy-intro-image {
+  transition:
+    opacity 990ms ease,
+    transform 1560ms ease,
+    filter 990ms ease;
+  will-change: opacity, transform, filter;
+}
+
+.careeasy-intro-image-active {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+.careeasy-intro-image-inactive {
+  opacity: 0;
+  transform: scale(1.025);
+  filter: blur(3px);
+}
+
+/*
+  사용 흐름 섹션.
+*/
+.careeasy-flow-section {
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(233, 85, 19, 0.055),
+      transparent 24rem
+    ),
+    linear-gradient(180deg, #fffaf5 0%, var(--care-bg) 100%);
+}
+
+.careeasy-flow-number {
+  border: 1px solid rgba(233, 85, 19, 0.18);
+  background: var(--care-primary-soft);
+  color: var(--care-primary-dark);
+}
+
+/*
+  FAQ role cards.
+  과하지 않게, 선택 가능한 카드라는 느낌만 줍니다.
+*/
+.careeasy-faq-role-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(234, 220, 205, 0.78);
+  background: rgba(255, 255, 255, 0.66);
+  box-shadow: 0 8px 22px rgba(32, 36, 38, 0.045);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.careeasy-faq-role-card::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 1.15rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(233, 85, 19, 0.34);
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.careeasy-faq-role-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(233, 85, 19, 0.24);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 34px rgba(32, 36, 38, 0.075);
+}
+
+.careeasy-faq-role-card:hover::before {
+  background: var(--care-primary);
+  box-shadow: 0 0 0 5px rgba(233, 85, 19, 0.09);
+}
+
+.careeasy-faq-role-card-active {
+  border-color: rgba(233, 85, 19, 0.42);
+  background: #ffffff;
+  box-shadow:
+    0 14px 34px rgba(32, 36, 38, 0.08),
+    inset 0 0 0 1px rgba(233, 85, 19, 0.07);
+}
+
+.careeasy-faq-role-card-active::before {
+  background: var(--care-primary);
+  box-shadow: 0 0 0 5px rgba(233, 85, 19, 0.1);
+}
+
+/*
+  FAQ tabs.
+  문구 안내 없이도 가로로 이어져 있다는 느낌이 나도록
+  모바일에서 좌우 fade를 보여줍니다.
+*/
+.careeasy-faq-tab-scroll-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(234, 220, 205, 0.72);
+  background: rgba(255, 248, 241, 0.72);
+  box-shadow: 0 10px 26px rgba(32, 36, 38, 0.045);
+  backdrop-filter: blur(10px);
+}
+
+
+/*
+  브라우저가 prefers-color-scheme: dark로 들어와도
+  케어이지 색상 토큰은 그대로 유지합니다.
+*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: only light;
+
+    --care-bg: #fbf4ea;
+    --care-bg-soft: #fff8f1;
+    --care-bg-card: #ffffff;
+
+    --care-primary: #e95513;
+    --care-primary-dark: #bf430d;
+    --care-primary-soft: #fff0e7;
+
+    --care-text: #202426;
+    --care-text-soft: #3b3631;
+    --care-muted: #756b62;
+    --care-muted-light: #9d9288;
+
+    --care-border: #eadccd;
+    --care-border-soft: rgba(234, 220, 205, 0.68);
+  }
+
+  html,
+  body {
+    background-color: #fbf4ea;
+    color: #202426;
+  }
+}
+
+@media (max-width: 767px) {
+  .careeasy-faq-tab-scroll-shell {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
+
+  .careeasy-faq-tab-scroll-shell::before,
+  .careeasy-faq-tab-scroll-shell::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    width: 2.75rem;
+    pointer-events: none;
+  }
+
+  .careeasy-faq-tab-scroll-shell::before {
+    left: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 248, 241, 0.98) 0%,
+      rgba(255, 248, 241, 0) 100%
+    );
+  }
+
+  .careeasy-faq-tab-scroll-shell::after {
+    right: 0;
+    background: linear-gradient(
+      270deg,
+      rgba(255, 248, 241, 0.98) 0%,
+      rgba(255, 248, 241, 0) 100%
+    );
+  }
+}
+
+@media (min-width: 768px) {
+  .careeasy-faq-tab-scroll-shell {
+    border-radius: 999px;
+  }
+}
+
+.careeasy-faq-tab {
+  border: 1px solid transparent;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.careeasy-faq-tab:hover {
+  transform: translateY(-1px);
+}
+
+.careeasy-faq-tab-active {
+  border-color: rgba(233, 85, 19, 0.42);
+  background: var(--care-primary);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(233, 85, 19, 0.18);
+}
+
+.careeasy-faq-tab-idle {
+  border-color: rgba(234, 220, 205, 0.84);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--care-muted);
+  box-shadow: 0 6px 16px rgba(32, 36, 38, 0.035);
+}
+
+.careeasy-faq-tab-idle:hover {
+  border-color: rgba(233, 85, 19, 0.28);
+  background: #ffffff;
+  color: var(--care-primary-dark);
+  box-shadow: 0 10px 24px rgba(32, 36, 38, 0.07);
+}
+
+/*
+  이전 안내 문구가 컴포넌트에 남아 있어도 보이지 않게 처리합니다.
+*/
+.careeasy-faq-scroll-hint {
+  display: none !important;
+}
+
+.careeasy-faq-scroll-hint-arrow {
+  display: none !important;
+}
+
+/*
+  FAQ 탭 패널 슬라이드.
+*/
+.careeasy-faq-panel-slide-from-right {
+  animation: careeasy-faq-slide-from-right 470ms cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.careeasy-faq-panel-slide-from-left {
+  animation: careeasy-faq-slide-from-left 470ms cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+@keyframes careeasy-faq-slide-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes careeasy-faq-slide-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*
+  FAQ 답변 열림 모션.
+*/
+details[open] [data-faq-answer] {
+  animation: careeasy-faq-answer-in 310ms ease both;
+}
+
+@keyframes careeasy-faq-answer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+  모바일에서는 hover lift를 제거해 불필요한 튐을 줄입니다.
+*/
+@media (max-width: 767px) {
+  .careeasy-clean-card:hover,
+  .careeasy-faq-role-card:hover,
+  .careeasy-faq-tab:hover,
+  .careeasy-pressable:hover {
+    transform: none;
+  }
+
+  .careeasy-pressable:active {
+    transform: scale(0.99);
+  }
+}
+
+/*
+  접근성: 모션 감소 설정 대응.
+*/
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
