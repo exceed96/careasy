@@ -336,10 +336,10 @@ export function CareEasyIntroSection() {
                     data-careeasy-target={slide.id}
                     onClick={() => moveToSlide(slideIndex, 'dot')}
                     className={[
-                      'h-2 rounded-full transition-all duration-300',
+                      'careeasy-intro-dot h-2 rounded-full transition-all duration-300',
                       isActive
-                        ? 'w-6 bg-[var(--care-primary)]'
-                        : 'w-2 bg-[rgba(117,107,98,0.26)] hover:bg-[rgba(117,107,98,0.42)]',
+                        ? 'careeasy-intro-dot-active w-6'
+                        : 'w-2',
                     ].join(' ')}
                   />
                 );

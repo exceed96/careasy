@@ -218,6 +218,39 @@ a {
   pointer-events: none;
 }
 
+.careeasy-intro-dot {
+  background: rgba(117, 107, 98, 0.26);
+}
+
+.careeasy-intro-dot:hover {
+  background: rgba(117, 107, 98, 0.42);
+}
+
+.careeasy-intro-dot-active,
+.careeasy-intro-dot-active:hover {
+  background: var(--care-primary);
+  box-shadow: 0 0 0 4px rgba(233, 85, 19, 0.12);
+}
+
+@media (max-width: 639px) {
+  .careeasy-intro-dot {
+    background: rgba(255, 248, 241, 0.72);
+    box-shadow: 0 0 0 1px rgba(117, 107, 98, 0.14);
+  }
+
+  .careeasy-intro-dot:hover {
+    background: rgba(255, 248, 241, 0.9);
+  }
+
+  .careeasy-intro-dot-active,
+  .careeasy-intro-dot-active:hover {
+    background: #f26722;
+    box-shadow:
+      0 0 0 1px rgba(191, 67, 13, 0.18),
+      0 0 0 5px rgba(242, 103, 34, 0.14);
+  }
+}
+
 /*
   첫 화면 배경 이미지 전환.
 */

@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { CheckCircle2, Loader2, X } from 'lucide-react';
+import { CheckCircle2, ChevronDown, Loader2, X } from 'lucide-react';
 import {
   careEasyEvents,
   trackCareEasyEvent,
@@ -231,7 +231,7 @@ export function CareEasyTrialModal() {
   return (
     <div
       role="presentation"
-      className="fixed inset-0 z-[100] flex items-end justify-center bg-[rgba(32,36,38,0.34)] px-0 backdrop-blur-sm sm:items-center sm:px-5"
+      className="fixed inset-0 z-[100] flex items-end justify-center bg-[rgba(32,36,38,0.34)] px-3 pb-3 backdrop-blur-sm sm:items-center sm:px-5 sm:pb-0"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) {
           closeModal();
@@ -242,20 +242,25 @@ export function CareEasyTrialModal() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="careeasy-trial-modal-title"
-        className="w-full max-w-md rounded-t-[2rem] border border-[var(--care-border-soft)] bg-[var(--care-bg-soft)] p-5 shadow-[0_-16px_54px_rgba(32,36,38,0.18)] sm:rounded-[2rem] sm:p-6"
+        className="max-h-[calc(100dvh-1.5rem)] w-full max-w-md overflow-y-auto rounded-[1.75rem] border border-[var(--care-border-soft)] bg-[var(--care-bg-soft)] p-5 shadow-[0_-16px_54px_rgba(32,36,38,0.18)] sm:rounded-[2rem] sm:p-6"
       >
+        <div
+          className="mx-auto mb-5 h-1.5 w-10 rounded-full bg-[rgba(117,107,98,0.2)] sm:hidden"
+          aria-hidden="true"
+        />
+
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="careeasy-kicker">1개월 무료 체험</p>
 
             <h2
               id="careeasy-trial-modal-title"
-              className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--care-text)]"
+              className="careeasy-balanced-text mt-3 text-xl font-bold leading-tight tracking-tight text-[var(--care-text)] sm:text-2xl"
             >
               케어이지 무료 체험을 안내해드릴게요.
             </h2>
 
-            <p className="mt-3 text-sm leading-6 text-[var(--care-muted)]">
+            <p className="careeasy-balanced-text mt-2 text-sm leading-6 text-[var(--care-muted)]">
               전화번호 또는 이메일만 남기면, 무료 체험 안내를 보내드립니다.
             </p>
           </div>
@@ -287,13 +292,13 @@ export function CareEasyTrialModal() {
             <button
               type="button"
               onClick={closeModal}
-              className="careeasy-pressable mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[var(--care-primary)] px-5 py-3 text-sm font-bold text-white"
+              className="careeasy-pressable careeasy-cta-primary mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full px-5 py-3 text-sm font-bold"
             >
               확인
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-7 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-6 space-y-5">
             <div>
               <label
                 htmlFor="trial-contact"
@@ -311,8 +316,8 @@ export function CareEasyTrialModal() {
                 autoComplete="email"
                 value={contact}
                 onChange={(event) => setContact(event.target.value)}
-                placeholder="010-0000-0000 또는 careeasy@email.com"
-                className="mt-2 h-12 w-full rounded-2xl border border-[var(--care-border)] bg-white px-4 text-base text-[var(--care-text)] outline-none transition placeholder:text-[var(--care-muted-light)] focus:border-[var(--care-primary)]"
+                placeholder="010-0000-0000 / email@example.com"
+                className="mt-2 h-[3.25rem] min-h-[3.25rem] w-full rounded-2xl border border-[rgba(233,85,19,0.24)] bg-white px-4 text-base font-semibold text-[var(--care-text)] shadow-[0_8px_20px_rgba(32,36,38,0.05)] outline-none transition placeholder:font-medium placeholder:text-[var(--care-muted-light)] focus:border-[var(--care-primary)]"
               />
 
               {contact && contactType === 'unknown' ? (
@@ -322,50 +327,74 @@ export function CareEasyTrialModal() {
               ) : null}
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label
-                  htmlFor="trial-age"
-                  className="text-sm font-bold text-[var(--care-text)]"
-                >
-                  나이
-                </label>
+            <div>
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <p className="text-sm font-bold text-[var(--care-text)]">
+                  기본 정보
+                </p>
 
-                <select
-                  id="trial-age"
-                  name="age"
-                  value={age}
-                  onChange={(event) => setAge(event.target.value)}
-                  className="mt-2 h-12 w-full rounded-2xl border border-[var(--care-border)] bg-white px-4 text-sm text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
-                >
-                  <option value="">선택 안 함</option>
-                  <option value="20대">20대 이하</option>
-                  <option value="30대">30대</option>
-                  <option value="40대">40대</option>
-                  <option value="50대">50대</option>
-                  <option value="60대 이상">60대 이상</option>
-                </select>
+                <span className="rounded-full bg-white/70 px-2.5 py-1 text-[0.7rem] font-bold text-[var(--care-muted)]">
+                  선택 사항
+                </span>
               </div>
 
-              <div>
-                <label
-                  htmlFor="trial-gender"
-                  className="text-sm font-bold text-[var(--care-text)]"
-                >
-                  성별
-                </label>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label
+                    htmlFor="trial-age"
+                    className="text-xs font-bold text-[var(--care-muted)]"
+                  >
+                    나이
+                  </label>
 
-                <select
-                  id="trial-gender"
-                  name="gender"
-                  value={gender}
-                  onChange={(event) => setGender(event.target.value)}
-                  className="mt-2 h-12 w-full rounded-2xl border border-[var(--care-border)] bg-white px-4 text-sm text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
-                >
-                  <option value="">선택 안 함</option>
-                  <option value="여성">여성</option>
-                  <option value="남성">남성</option>
-                </select>
+                  <div className="relative mt-2">
+                    <select
+                      id="trial-age"
+                      name="age"
+                      value={age}
+                      onChange={(event) => setAge(event.target.value)}
+                      className="h-12 w-full appearance-none rounded-2xl border border-[var(--care-border)] bg-white/90 px-4 pr-10 text-sm font-semibold text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
+                    >
+                      <option value="">선택 안 함</option>
+                      <option value="20대">20대 이하</option>
+                      <option value="30대">30대</option>
+                      <option value="40대">40대</option>
+                      <option value="50대">50대</option>
+                      <option value="60대 이상">60대 이상</option>
+                    </select>
+                    <ChevronDown
+                      className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--care-muted)]"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="trial-gender"
+                    className="text-xs font-bold text-[var(--care-muted)]"
+                  >
+                    성별
+                  </label>
+
+                  <div className="relative mt-2">
+                    <select
+                      id="trial-gender"
+                      name="gender"
+                      value={gender}
+                      onChange={(event) => setGender(event.target.value)}
+                      className="h-12 w-full appearance-none rounded-2xl border border-[var(--care-border)] bg-white/90 px-4 pr-10 text-sm font-semibold text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
+                    >
+                      <option value="">선택 안 함</option>
+                      <option value="여성">여성</option>
+                      <option value="남성">남성</option>
+                    </select>
+                    <ChevronDown
+                      className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--care-muted)]"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -379,7 +408,7 @@ export function CareEasyTrialModal() {
               type="submit"
               disabled={submitState === 'submitting'}
               data-careeasy-event="trial_form_submit"
-              className="careeasy-pressable inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[var(--care-primary)] px-6 py-3 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-60"
+              className="careeasy-pressable careeasy-cta-primary inline-flex min-h-[3.25rem] w-full items-center justify-center rounded-full px-6 py-3.5 text-base font-bold disabled:cursor-not-allowed disabled:opacity-60"
             >
               {submitState === 'submitting' ? (
                 <span className="inline-flex items-center gap-2">
@@ -391,7 +420,7 @@ export function CareEasyTrialModal() {
               )}
             </button>
 
-            <p className="text-center text-xs leading-5 text-[var(--care-muted)]">
+            <p className="rounded-2xl bg-white/55 px-3 py-2 text-center text-xs leading-5 text-[var(--care-muted)]">
               제출 시 입력하신 개인정보는 문의/신청 처리 목적 외에는 사용되지 않습니다.
             </p>
           </form>
