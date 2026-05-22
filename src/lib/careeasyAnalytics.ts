@@ -23,8 +23,9 @@ declare global {
 export const careEasyEvents = {
   introPrimaryClick: "careeasy_intro_primary_click",
   introSecondaryClick: "careeasy_intro_secondary_click",
-  headerTrialClick: "careeasy_header_trial_click",
-  trialStartClick: "careeasy_trial_start_click",
+  trialClick: "trial_click",
+  headerTrialClick: "trial_click",
+  trialStartClick: "trial_click",
   kakaoOpenChatClick: "careeasy_kakao_open_chat_click",
 
   trialModalOpen: "careeasy_trial_modal_open",

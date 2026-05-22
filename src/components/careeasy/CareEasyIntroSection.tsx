@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CareEasyContainer } from '@/components/ui/CareEasyContainer';
 import { careEasyIntroSlides } from '@/content/careeasy/intro';
-import { trackCareEasyEvent } from '@/lib/careeasyAnalytics';
+import { careEasyEvents, trackCareEasyEvent } from '@/lib/careeasyAnalytics';
 import { openCareEasyTrialModal } from '@/lib/openCareEasyTrialModal';
 
 const AUTO_SLIDE_INTERVAL_MS = 6000;
@@ -78,13 +78,22 @@ export function CareEasyIntroSection() {
     action: 'primary_cta' | 'secondary_cta',
     sectionId: string,
   ) => {
-    trackIntroClick(action, sectionId);
-
     if (isTrialTarget(sectionId)) {
-      openCareEasyTrialModal(`intro_${action}_${activeSlide.id}`);
+      const source = `intro_${action}_${activeSlide.id}`;
+
+      trackCareEasyEvent(careEasyEvents.trialClick, {
+        source,
+        action,
+        target: sectionId,
+        slide_id: activeSlide.id,
+        slide_index: activeSlideIndex + 1,
+      });
+
+      openCareEasyTrialModal(source);
       return;
     }
 
+    trackIntroClick(action, sectionId);
     scrollToSection(sectionId);
   };
 
@@ -221,7 +230,7 @@ export function CareEasyIntroSection() {
         모바일에서는 텍스트 가독성만 보조하고, 이미지를 과하게 덮지 않도록 약하게 처리합니다.
         데스크톱에서는 좌측 텍스트 영역 쪽에만 자연스럽게 크림 오버레이가 들어갑니다.
       */}
-      <div className="absolute inset-0 z-[-3] bg-[linear-gradient(180deg,rgba(251,244,234,0.42)_0%,rgba(251,244,234,0.26)_38%,rgba(251,244,234,0.08)_100%)] md:bg-[linear-gradient(90deg,rgba(251,244,234,0.88)_0%,rgba(251,244,234,0.82)_20%,rgba(251,244,234,0.34)_38%,rgba(251,244,234,0.04)_62%,rgba(251,244,234,0)_100%)]" />
+      <div className="absolute inset-0 z-[-3] bg-[linear-gradient(180deg,rgba(251,244,234,0.62)_0%,rgba(251,244,234,0.34)_42%,rgba(251,244,234,0.12)_100%)] md:bg-[linear-gradient(90deg,rgba(251,244,234,0.9)_0%,rgba(251,244,234,0.8)_24%,rgba(251,244,234,0.34)_46%,rgba(251,244,234,0.04)_72%,rgba(251,244,234,0)_100%)]" />
 
       <div className="absolute inset-x-0 bottom-0 z-[-2] h-28 bg-[linear-gradient(0deg,var(--care-bg)_0%,rgba(251,244,234,0)_100%)]" />
 
@@ -231,8 +240,8 @@ export function CareEasyIntroSection() {
           대신 opacity와 blur를 약하게 해서 배경 이미지가 답답하게 가려지지 않도록 처리합니다.
           데스크톱에서는 카드 배경을 제거하고 자연스럽게 텍스트만 보이게 합니다.
         */}
-        <div className="w-full rounded-[1.5rem] bg-[rgba(251,244,234,0.16)] px-4 py-5 shadow-sm backdrop-blur-[1px] md:max-w-[720px] md:bg-transparent md:p-0 md:shadow-none md:backdrop-blur-0">
-          <div className="relative min-h-[390px] sm:min-h-[365px] md:min-h-[460px]">
+        <div className="w-full md:max-w-[720px]">
+          <div className="grid min-h-[390px] sm:min-h-[360px] md:min-h-[460px]">
             {slides.map((slide, slideIndex) => {
               const isActive = slideIndex === activeSlideIndex;
 
@@ -241,7 +250,7 @@ export function CareEasyIntroSection() {
                   key={slide.id}
                   aria-hidden={!isActive}
                   className={[
-                    'careeasy-intro-copy absolute inset-0',
+                    'careeasy-intro-copy col-start-1 row-start-1',
                     isActive
                       ? 'careeasy-intro-copy-active'
                       : 'careeasy-intro-copy-inactive',
@@ -251,16 +260,16 @@ export function CareEasyIntroSection() {
                     <span className="careeasy-kicker">{slide.eyebrow}</span>
                   </div>
 
-                  <h1 className="text-3xl sm:text-[2.35rem] font-bold leading-[1.08] tracking-tight text-black sm:text-5xl md:text-6xl">
+                  <h1 className="careeasy-balanced-text text-[2rem] font-bold leading-[1.12] tracking-tight text-[var(--care-text)] sm:text-5xl md:text-6xl">
                     {slide.titleLines.map((line) => (
-                      <span key={line} className="block ">
+                      <span key={line} className="block">
                         {line}
                       </span>
                     ))}
                   </h1>
 
                   {'descriptionLines' in slide ? (
-                    <p className="mt-5 max-w-xl ma text-sm font-bold leading-7 text-black max-md:w-fit max-md:rounded-2xl max-md:border max-md:border-white/60 max-md:bg-orange-50/72 max-md:px-4 max-md:py-3 max-md:shadow-[var(--care-shadow-soft)] max-md:backdrop-blur-md sm:text-[0.98rem] md:mt-6 md:w-auto md:border-0 md:bg-transparent md:px-0 md:py-0 md:shadow-none md:backdrop-blur-0 md:text-lg md:leading-8">
+                    <p className="careeasy-balanced-text mt-5 max-w-lg rounded-2xl bg-[rgba(255,248,241,0.56)] px-4 py-3 text-sm font-semibold leading-7 text-[rgba(59,54,49,0.88)] ring-1 ring-white/30 backdrop-blur-[3px] sm:text-[0.98rem] md:mt-6 md:max-w-xl md:bg-transparent md:px-0 md:py-0 md:text-lg md:font-medium md:leading-8 md:ring-0 md:backdrop-blur-0">
                       {slide.descriptionLines.map((line) => (
                         <span key={line} className="block">
                           {line}
@@ -302,22 +311,18 @@ export function CareEasyIntroSection() {
             })}
           </div>
 
-          {/*
-            모바일용 슬라이드 컨트롤입니다.
-            CTA 버튼과 달리, 슬라이드 이동 기능에는 좌우 화살표를 유지합니다.
-          */}
-          <div className="mt-4 flex items-center justify-between gap-4 md:mt-0 md:w-fit">
+          <div className="mx-auto mt-7 flex w-full max-w-[15rem] items-center justify-between gap-4 md:mx-0 md:mt-4 md:max-w-[17rem]">
             <button
               type="button"
               aria-label="이전 첫 화면 슬라이드 보기"
               data-careeasy-event="intro_previous_click"
               onClick={() => moveToSlide(activeSlideIndex - 1, 'previous')}
-              className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/60 bg-white/42 text-[var(--care-text)] shadow-[0_8px_22px_rgba(32,36,38,0.10)] backdrop-blur-md transition hover:border-[rgba(233,85,19,0.28)] hover:bg-white/72 hover:text-[var(--care-primary-dark)] active:scale-95 md:h-12 md:w-12"
+              className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[rgba(59,54,49,0.58)] transition hover:text-[var(--care-primary-dark)] active:scale-95"
             >
-              <ChevronLeft className="h-5 w-5 transition-transform group-hover:-translate-x-0.5" />
+              <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
             </button>
 
-            <div className="flex flex-1 items-center justify-center gap-2.5 md:flex-none">
+            <div className="flex min-w-0 flex-1 items-center justify-center gap-2.5">
               {slides.map((slide, slideIndex) => {
                 const isActive = slideIndex === activeSlideIndex;
 
@@ -331,10 +336,10 @@ export function CareEasyIntroSection() {
                     data-careeasy-target={slide.id}
                     onClick={() => moveToSlide(slideIndex, 'dot')}
                     className={[
-                      'h-2.5 rounded-full transition-all duration-300',
+                      'h-2 rounded-full transition-all duration-300',
                       isActive
-                        ? 'w-8 bg-[var(--care-primary)] shadow-[0_4px_12px_rgba(233,85,19,0.22)]'
-                        : 'w-2.5 bg-white/62 ring-1 ring-[var(--care-border-soft)] hover:bg-white',
+                        ? 'w-6 bg-[var(--care-primary)]'
+                        : 'w-2 bg-[rgba(117,107,98,0.26)] hover:bg-[rgba(117,107,98,0.42)]',
                     ].join(' ')}
                   />
                 );
@@ -346,9 +351,9 @@ export function CareEasyIntroSection() {
               aria-label="다음 첫 화면 슬라이드 보기"
               data-careeasy-event="intro_next_click"
               onClick={() => moveToSlide(activeSlideIndex + 1, 'next')}
-              className="group flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/60 bg-white/42 text-[var(--care-text)] shadow-[0_8px_22px_rgba(32,36,38,0.10)] backdrop-blur-md transition hover:border-[rgba(233,85,19,0.28)] hover:bg-white/72 hover:text-[var(--care-primary-dark)] active:scale-95 md:h-12 md:w-12"
+              className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[rgba(59,54,49,0.58)] transition hover:text-[var(--care-primary-dark)] active:scale-95"
             >
-              <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+              <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </button>
           </div>
         </div>

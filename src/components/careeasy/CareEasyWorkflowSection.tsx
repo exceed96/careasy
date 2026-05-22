@@ -13,11 +13,11 @@ export function CareEasyWorkflowSection() {
         <div className="mx-auto max-w-3xl text-center">
           <span className="careeasy-kicker">{careEasyWorkflow.eyebrow}</span>
 
-          <h2 className="mt-5 text-3xl font-bold tracking-tight md:text-5xl">
+          <h2 className="careeasy-balanced-text mt-5 text-3xl font-bold tracking-tight md:text-5xl">
             {careEasyWorkflow.title}
           </h2>
 
-          <p className="mt-5 text-base leading-7 text-[var(--care-muted)] md:text-lg md:leading-8">
+          <p className="careeasy-balanced-text mt-5 text-base leading-7 text-[var(--care-muted)] md:text-lg md:leading-8">
             기록은 한 번으로 끝나지 않습니다. 다음 담당자가 바로 이해하고 이어받을 수 있어야 합니다.
           </p>
         </div>
@@ -48,11 +48,11 @@ export function CareEasyWorkflowSection() {
                     </div>
                   </div>
 
-                  <h3 className="mt-6 text-xl font-bold tracking-tight text-[var(--care-text)]">
+                  <h3 className="careeasy-balanced-text mt-6 text-xl font-bold tracking-tight text-[var(--care-text)]">
                     {step.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-7 text-[var(--care-muted)] md:text-base">
+                  <p className="careeasy-balanced-text mt-3 text-sm leading-7 text-[var(--care-muted)] md:text-base">
                     {step.body}
                   </p>
                 </div>

@@ -169,11 +169,11 @@ export function CareEasyFaqSection() {
             {careEasyFaq.eyebrow}
           </div>
 
-          <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
+          <h2 className="careeasy-balanced-text text-3xl font-bold tracking-tight md:text-5xl">
             {careEasyFaq.title}
           </h2>
 
-          <p className="mt-5 text-base leading-7 text-[var(--care-muted)] md:text-lg md:leading-8">
+          <p className="careeasy-balanced-text mt-5 text-base leading-7 text-[var(--care-muted)] md:text-lg md:leading-8">
             {careEasyFaq.description}
           </p>
         </div>
@@ -185,11 +185,11 @@ export function CareEasyFaqSection() {
               {careEasyFaqGuide.eyebrow}
             </div>
 
-            <h3 className="text-2xl font-bold tracking-tight">
+            <h3 className="careeasy-balanced-text text-2xl font-bold tracking-tight">
               {careEasyFaqGuide.question}
             </h3>
 
-            <p className="mt-2 text-sm leading-6 text-[var(--care-muted)]">
+            <p className="careeasy-balanced-text mt-2 text-sm leading-6 text-[var(--care-muted)]">
               {careEasyFaqGuide.description}
             </p>
           </div>
@@ -209,11 +209,11 @@ export function CareEasyFaqSection() {
                     isSelected ? 'careeasy-faq-role-card-active' : '',
                   ].join(' ')}
                 >
-                  <span className="block text-base font-bold text-[var(--care-text)]">
+                  <span className="careeasy-balanced-text block text-base font-bold text-[var(--care-text)]">
                     {option.label}
                   </span>
 
-                  <span className="mt-1 block text-sm leading-6 text-[var(--care-muted)]">
+                  <span className="careeasy-balanced-text mt-1 block text-sm leading-6 text-[var(--care-muted)]">
                     {option.helper}
                   </span>
                 </button>
@@ -308,11 +308,11 @@ export function CareEasyFaqSection() {
                   선택된 FAQ
                 </p>
 
-                <h3 className="mt-1 text-2xl font-bold tracking-tight">
+                <h3 className="careeasy-balanced-text mt-1 text-2xl font-bold tracking-tight">
                   {activeCategory.name}
                 </h3>
 
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-[var(--care-muted)]">
+                <p className="careeasy-balanced-text mt-2 max-w-3xl text-sm leading-6 text-[var(--care-muted)]">
                   {activeCategory.description}
                 </p>
               </div>
@@ -323,7 +323,7 @@ export function CareEasyFaqSection() {
                     key={`${activeCategory.name}-${item.question}`}
                     className="group rounded-2xl border border-[var(--care-border)] bg-white p-5 shadow-sm"
                   >
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-semibold leading-7 text-[var(--care-text)]">
+                    <summary className="careeasy-balanced-text flex cursor-pointer list-none items-start justify-between gap-4 text-base font-semibold leading-7 text-[var(--care-text)]">
                       <span>{item.question}</span>
 
                       <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--care-primary-soft)] text-[var(--care-primary-dark)] transition group-open:rotate-180">
@@ -335,7 +335,7 @@ export function CareEasyFaqSection() {
                       data-faq-answer
                       className="mt-4 border-t border-[var(--care-border)] pt-4"
                     >
-                      <p className="whitespace-pre-line text-sm leading-7 text-[var(--care-muted)] md:text-base">
+                      <p className="careeasy-balanced-text whitespace-pre-line text-sm leading-7 text-[var(--care-muted)] md:text-base">
                         {item.answer}
                       </p>
                     </div>

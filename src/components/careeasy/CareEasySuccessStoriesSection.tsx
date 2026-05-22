@@ -18,7 +18,7 @@ function SuccessStoryCard({
     <article className="careeasy-success-story-card careeasy-clean-card flex w-[min(88vw,22rem)] shrink-0 flex-col rounded-[1.75rem] p-6 md:w-[24rem] md:p-7">
       <div className="mb-4 flex items-start justify-between gap-3">
         <div>
-          <p className="text-lg font-bold tracking-tight text-[var(--care-text)]">
+          <p className="careeasy-balanced-text text-lg font-bold tracking-tight text-[var(--care-text)]">
             {family}
           </p>
           <p className="mt-1 text-sm font-semibold text-[var(--care-primary-dark)]">
@@ -31,11 +31,11 @@ function SuccessStoryCard({
         </div>
       </div>
 
-      <p className="flex-1 text-sm leading-7 text-[var(--care-muted)] md:text-[0.95rem]">
+      <p className="careeasy-balanced-text flex-1 text-sm leading-7 text-[var(--care-muted)] md:text-[0.95rem]">
         &ldquo;{quote}&rdquo;
       </p>
 
-      <p className="mt-5 inline-flex items-center rounded-full border border-[rgba(233,85,19,0.22)] bg-[var(--care-primary-soft)] px-3 py-1.5 text-xs font-semibold text-[var(--care-primary-dark)]">
+      <p className="careeasy-balanced-text mt-5 inline-flex items-center rounded-full border border-[rgba(233,85,19,0.22)] bg-[var(--care-primary-soft)] px-3 py-1.5 text-xs font-semibold text-[var(--care-primary-dark)]">
         {highlight}
       </p>
     </article>
@@ -64,11 +64,11 @@ export function CareEasySuccessStoriesSection() {
             {careEasySuccessStories.eyebrow}
           </div>
 
-          <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
+          <h2 className="careeasy-balanced-text text-3xl font-bold tracking-tight md:text-5xl">
             {careEasySuccessStories.title}
           </h2>
 
-          <p className="mt-5 text-base leading-7 text-[var(--care-muted)] md:text-lg md:leading-8">
+          <p className="careeasy-balanced-text mt-5 text-base leading-7 text-[var(--care-muted)] md:text-lg md:leading-8">
             {careEasySuccessStories.description}
           </p>
         </div>

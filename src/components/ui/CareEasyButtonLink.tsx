@@ -10,6 +10,7 @@ type CareEasyButtonLinkProps = {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary';
   eventName?: string;
+  eventSource?: string;
   className?: string;
 };
 
@@ -22,6 +23,7 @@ export function CareEasyButtonLink({
   children,
   variant = 'primary',
   eventName,
+  eventSource,
   className,
 }: CareEasyButtonLinkProps) {
   const isPrimary = variant === 'primary';
@@ -32,12 +34,15 @@ export function CareEasyButtonLink({
       href={href}
       onClick={(event) => {
         if (eventName) {
-          trackCareEasyEvent(eventName, { link_url: href });
+          trackCareEasyEvent(eventName, {
+            link_url: href,
+            source: eventSource ?? href,
+          });
         }
 
         if (isTrialButton) {
           event.preventDefault();
-          openCareEasyTrialModal(eventName ?? 'careeasy_button_link');
+          openCareEasyTrialModal(eventSource ?? eventName ?? 'careeasy_button_link');
         }
       }}
       className={cn(

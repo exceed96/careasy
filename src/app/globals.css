@@ -84,6 +84,16 @@ a {
 }
 
 /*
+  한국어 문장 줄바꿈.
+  모바일에서 어절이 어색하게 쪼개지지 않도록 주요 문구에 사용합니다.
+*/
+.careeasy-balanced-text {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+/*
   공통 인터랙션.
   과한 튐 없이 살짝 올라오는 정도만 유지합니다.
 */

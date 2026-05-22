@@ -42,11 +42,11 @@ export function CareEasyTrialStartSection() {
 
           <p className="careeasy-kicker justify-center">CareEasy Trial</p>
 
-          <h2 className="mx-auto mt-4 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
+          <h2 className="careeasy-balanced-text mx-auto mt-4 max-w-3xl text-3xl font-bold leading-tight tracking-tight md:text-5xl">
             {careEasyTrialStart.title}
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[var(--care-muted)] md:text-lg md:leading-8">
+          <p className="careeasy-balanced-text mx-auto mt-4 max-w-2xl text-base leading-7 text-[var(--care-muted)] md:text-lg md:leading-8">
             {careEasyTrialStart.description}
           </p>
 
@@ -78,6 +78,7 @@ export function CareEasyTrialStartSection() {
             <CareEasyButtonLink
               href="#trial"
               eventName={careEasyEvents.trialStartClick}
+              eventSource="trial_section_cta"
               className="w-full sm:w-auto"
             >
               {careEasyTrialStart.cta}

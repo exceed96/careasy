@@ -14,11 +14,11 @@ export function CareEasyProblemSection() {
             {careEasyProblem.eyebrow}
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-5xl">
+          <h2 className="careeasy-balanced-text mt-3 text-3xl font-bold tracking-tight md:text-5xl">
             {careEasyProblem.title}
           </h2>
 
-          <p className="mt-5 text-lg leading-8 text-[var(--care-muted)]">
+          <p className="careeasy-balanced-text mt-5 text-lg leading-8 text-[var(--care-muted)]">
             {careEasyProblem.description}
           </p>
         </div>
@@ -29,8 +29,10 @@ export function CareEasyProblemSection() {
               key={card.title}
               className="careeasy-card rounded-[var(--care-radius-2xl)] p-6"
             >
-              <h3 className="text-xl font-bold">{card.title}</h3>
-              <p className="mt-3 leading-7 text-[var(--care-muted)]">
+              <h3 className="careeasy-balanced-text text-xl font-bold">
+                {card.title}
+              </h3>
+              <p className="careeasy-balanced-text mt-3 leading-7 text-[var(--care-muted)]">
                 {card.body}
               </p>
             </article>

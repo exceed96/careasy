@@ -21,11 +21,11 @@ export function CareEasyAppPreviewSection() {
             {careEasyAppPreview.eyebrow}
           </div>
 
-          <h2 className="text-3xl font-bold tracking-tight md:text-5xl">
+          <h2 className="careeasy-balanced-text text-3xl font-bold tracking-tight md:text-5xl">
             {careEasyAppPreview.title}
           </h2>
 
-          <p className="mt-5 text-base leading-7 text-[var(--care-mute)] md:text-lg md:leading-8">
+          <p className="careeasy-balanced-text mt-5 text-base leading-7 text-[var(--care-mute)] md:text-lg md:leading-8">
             {careEasyAppPreview.description}
           </p>
         </div>
@@ -74,11 +74,11 @@ export function CareEasyAppPreviewSection() {
                 </div>
 
                 <div className="mt-6">
-                  <h3 className="text-xl font-bold tracking-tight">
+                  <h3 className="careeasy-balanced-text text-xl font-bold tracking-tight">
                     {screen.title}
                   </h3>
 
-                  <p className="mt-2 text-sm leading-6 text-[var(--care-muted)]">
+                  <p className="careeasy-balanced-text mt-2 text-sm leading-6 text-[var(--care-muted)]">
                     {screen.description}
                   </p>
                 </div>

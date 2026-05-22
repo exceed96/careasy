@@ -98,6 +98,7 @@ export function CareEasyHeader() {
           <CareEasyButtonLink
             href="#trial"
             eventName={careEasyEvents.headerTrialClick}
+            eventSource="header_trial_cta"
             className="min-h-10 shrink-0 px-4 py-2 text-xs md:min-h-11 md:px-5 md:text-sm"
           >
             무료 체험
