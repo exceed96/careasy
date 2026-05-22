@@ -37,10 +37,10 @@ export const careEasyEvents = {
 
 /** Meta Pixel 표준 이벤트로 매핑할 CareEasy 이벤트입니다. */
 const metaPixelStandardEvents: Partial<
-  Record<string, "Lead" | "Contact" | "CompleteRegistration">
+  Record<string, "Lead" | "careeasy_kakao_open_chat_click" | "CompleteRegistration">
 > = {
   [careEasyEvents.trialSubmitSuccess]: "Lead",
-  [careEasyEvents.kakaoOpenChatClick]: "Contact",
+  [careEasyEvents.kakaoOpenChatClick]: "careeasy_kakao_open_chat_click",
   [careEasyEvents.trialModalOpen]: "CompleteRegistration",
 };
 
