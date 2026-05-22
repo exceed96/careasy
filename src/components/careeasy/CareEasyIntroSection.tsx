@@ -259,13 +259,13 @@ export function CareEasyIntroSection() {
                     ))}
                   </h1>
 
-                  <p className="mt-5 max-w-xl text-[0.98rem] leading-7 text-[var(--care-muted)] md:mt-6 md:text-lg md:leading-8">
+                  <p className="mt-5 max-w-xl text-[0.98rem] leading-7 font-bold text-black md:mt-6 md:text-lg md:leading-8">
                     {'descriptionLines' in slide
                       ? slide.descriptionLines.map((line) => (
-                          <span key={line} className="block">
-                            {line}
-                          </span>
-                        ))
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))
                       : null}
                   </p>
 

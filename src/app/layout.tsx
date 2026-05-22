@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
+import { CareEasyMetaPixel } from "@/components/analytics/CareEasyMetaPixel";
 import { careEasySite } from "@/content/careeasy/site";
 import "./globals.css";
 
@@ -43,7 +44,7 @@ export const viewport: Viewport = {
 
 /**
  * CareEasy 전체 레이아웃입니다.
- * Vercel Analytics, GA4, Microsoft Clarity를 공통으로 연결합니다.
+ * Vercel Analytics, GA4, Microsoft Clarity, Meta Pixel을 공통으로 연결합니다.
  */
 export default function RootLayout({
   children,
@@ -58,6 +59,8 @@ export default function RootLayout({
         <Analytics />
 
         {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}
+
+        <CareEasyMetaPixel />
 
         {CLARITY_ID ? (
           <Script

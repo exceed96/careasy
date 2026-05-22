@@ -25,7 +25,7 @@ export function CareEasyAppPreviewSection() {
             {careEasyAppPreview.title}
           </h2>
 
-          <p className="mt-5 text-base leading-7 text-[var(--care-muted)] md:text-lg md:leading-8">
+          <p className="mt-5 text-base leading-7 text-[var(--care-mute)] md:text-lg md:leading-8">
             {careEasyAppPreview.description}
           </p>
         </div>

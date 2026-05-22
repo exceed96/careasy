@@ -4,6 +4,7 @@ import { CareEasyIntroSection } from '@/components/careeasy/CareEasyIntroSection
 import { CareEasyProblemSection } from '@/components/careeasy/CareEasyProblemSection';
 import { CareEasyWorkflowSection } from '@/components/careeasy/CareEasyWorkflowSection';
 import { CareEasyAppPreviewSection } from '@/components/careeasy/CareEasyAppPreviewSection';
+import { CareEasySuccessStoriesSection } from '@/components/careeasy/CareEasySuccessStoriesSection';
 import { CareEasyFaqSection } from '@/components/careeasy/CareEasyFaqSection';
 import { CareEasyTrialStartSection } from '@/components/careeasy/CareEasyTrialStartSection';
 import { CareEasyTrialModal } from '@/components/careeasy/CareEasyTrialModal';
@@ -17,16 +18,15 @@ export default function HomePage() {
   return (
     <>
       <CareEasyHeader />
-
       <main>
         <CareEasyIntroSection />
         <CareEasyProblemSection />
         <CareEasyWorkflowSection />
         <CareEasyAppPreviewSection />
+        <CareEasySuccessStoriesSection />
         <CareEasyFaqSection />
         <CareEasyTrialStartSection />
       </main>
-
       <CareEasyFooter />
       <CareEasyTrialModal />
     </>

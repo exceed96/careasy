@@ -71,7 +71,10 @@ export function CareEasyTrialStartSection() {
             </span>
           </div>
 
-          <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-7 flex flex-col items-center justify-center gap-3">
+            <p className="text-xs font-medium text-[var(--care-muted)]">
+              1개월 동안 먼저 경험해보세요.
+            </p>
             <CareEasyButtonLink
               href="#trial"
               eventName={careEasyEvents.trialStartClick}
@@ -79,10 +82,6 @@ export function CareEasyTrialStartSection() {
             >
               {careEasyTrialStart.cta}
             </CareEasyButtonLink>
-
-            <p className="text-sm font-medium text-[var(--care-muted)]">
-              1개월 동안 먼저 경험해보세요.
-            </p>
           </div>
         </div>
       </CareEasyContainer>

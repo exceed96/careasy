@@ -57,19 +57,19 @@ export function CareEasyHeader() {
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-[var(--care-muted)] lg:flex">
-          <a href="#problem" className="transition hover:text-[var(--care-text)]">
+          <a href="#problem" className="transition hover:text-[var(--care-text)] font-bold text-lg">
             문제
           </a>
-          <a href="#flow" className="transition hover:text-[var(--care-text)]">
+          <a href="#flow" className="transition hover:text-[var(--care-text)] font-bold text-lg">
             사용 흐름
           </a>
-          <a href="#app-screens" className="transition hover:text-[var(--care-text)]">
+          <a href="#app-screens" className="transition hover:text-[var(--care-text)] font-bold text-lg">
             앱 화면
           </a>
-          <a href="#faq" className="transition hover:text-[var(--care-text)]">
+          <a href="#faq" className="transition hover:text-[var(--care-text)] font-bold text-lg">
             FAQ
           </a>
-          <a href="#trial" className="transition hover:text-[var(--care-text)]">
+          <a href="#trial" className="transition hover:text-[var(--care-text)] font-bold text-lg">
             무료 체험
           </a>
         </nav>

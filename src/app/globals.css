@@ -251,6 +251,60 @@ a {
 }
 
 /*
+  성공사례 수평 마퀴.
+*/
+.careeasy-success-marquee-shell::before,
+.careeasy-success-marquee-shell::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 3.5rem;
+  pointer-events: none;
+}
+
+.careeasy-success-marquee-shell::before {
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 250, 245, 0.98) 0%,
+    rgba(255, 250, 245, 0) 100%
+  );
+}
+
+.careeasy-success-marquee-shell::after {
+  right: 0;
+  background: linear-gradient(
+    270deg,
+    rgba(251, 244, 234, 0.98) 0%,
+    rgba(251, 244, 234, 0) 100%
+  );
+}
+
+.careeasy-success-marquee-track {
+  animation: careeasy-success-marquee 42s linear infinite;
+}
+
+.careeasy-success-marquee-shell:hover .careeasy-success-marquee-track {
+  animation-play-state: paused;
+}
+
+.careeasy-success-story-card:hover {
+  transform: none;
+}
+
+@keyframes careeasy-success-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/*
   FAQ role cards.
   과하지 않게, 선택 가능한 카드라는 느낌만 줍니다.
 */
@@ -321,6 +375,26 @@ a {
   backdrop-filter: blur(10px);
 }
 
+.careeasy-faq-tab-scroll-track {
+  position: relative;
+  overflow: hidden;
+}
+
+.careeasy-faq-tab-nav {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.46);
+  color: var(--care-muted);
+  box-shadow: 0 6px 16px rgba(32, 36, 38, 0.06);
+  backdrop-filter: blur(12px);
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
 
 /*
   브라우저가 prefers-color-scheme: dark로 들어와도
@@ -356,23 +430,42 @@ a {
 
 @media (max-width: 767px) {
   .careeasy-faq-tab-scroll-shell {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.5rem;
     border-left: 0;
     border-right: 0;
     border-radius: 0;
   }
 
-  .careeasy-faq-tab-scroll-shell::before,
-  .careeasy-faq-tab-scroll-shell::after {
+  .careeasy-faq-tab-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .careeasy-faq-tab-nav:hover {
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--care-primary-dark);
+  }
+
+  .careeasy-faq-tab-nav:active {
+    transform: scale(0.95);
+  }
+
+  .careeasy-faq-tab-scroll-track::before,
+  .careeasy-faq-tab-scroll-track::after {
     content: "";
     position: absolute;
     top: 0;
     bottom: 0;
     z-index: 3;
-    width: 2.75rem;
+    width: 1.75rem;
     pointer-events: none;
   }
 
-  .careeasy-faq-tab-scroll-shell::before {
+  .careeasy-faq-tab-scroll-track::before {
     left: 0;
     background: linear-gradient(
       90deg,
@@ -381,7 +474,7 @@ a {
     );
   }
 
-  .careeasy-faq-tab-scroll-shell::after {
+  .careeasy-faq-tab-scroll-track::after {
     right: 0;
     background: linear-gradient(
       270deg,
@@ -392,8 +485,34 @@ a {
 }
 
 @media (min-width: 768px) {
+  .careeasy-faq-tab-nav {
+    display: none !important;
+  }
+
   .careeasy-faq-tab-scroll-shell {
-    border-radius: 999px;
+    overflow: visible;
+    border-radius: 2rem;
+  }
+
+  .careeasy-faq-tab-scroll-track {
+    overflow: visible;
+  }
+
+  .careeasy-faq-tablist {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: visible;
+    padding: 1rem 1.25rem;
+    scroll-snap-type: none;
+  }
+
+  .careeasy-faq-tab {
+    scroll-snap-align: none;
+  }
+
+  .careeasy-faq-panel-slide-from-right,
+  .careeasy-faq-panel-slide-from-left {
+    animation: none;
   }
 }
 

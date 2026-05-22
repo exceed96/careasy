@@ -223,63 +223,69 @@ export function CareEasyFaqSection() {
         </div>
 
         <div ref={tabPanelRef} className="mt-10 scroll-mt-24">
+          {/*
+            모바일: 가로 슬라이드 + 좌우 화살표
+            데스크톱: 탭 전체를 줄바꿈으로 노출 (가로 스크롤 없음)
+          */}
           <div className="careeasy-faq-tab-scroll-shell -mx-5 md:mx-0">
             {/*
-              모바일 전용 이전 화살표입니다.
-              탭 가독성을 방해하지 않도록 작고 반투명하게 배치합니다.
+              모바일 전용 이전/다음 화살표입니다.
+              탭 버튼과 겹치지 않도록 스크롤 영역 바깥 flex 열에 배치합니다.
             */}
             <button
               type="button"
               aria-label="이전 FAQ 탭 보기"
               onClick={moveToPreviousCategory}
-              className="absolute left-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/46 text-[var(--care-muted)] shadow-sm backdrop-blur-md transition hover:bg-white/78 hover:text-[var(--care-primary-dark)] active:scale-95 md:hidden"
+              className="careeasy-faq-tab-nav hidden shrink-0 max-md:flex"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
 
-            <div
-              role="tablist"
-              aria-label="CareEasy FAQ categories"
-              className="flex snap-x gap-2 overflow-x-auto px-14 py-3 [scrollbar-width:none] md:p-2 md:pr-2 [&::-webkit-scrollbar]:hidden"
-            >
-              {categories.map((category, categoryIndex) => {
-                const isActive = activeCategoryIndex === categoryIndex;
-                const panelId = `careeasy-faq-panel-${categoryIndex}`;
+            <div className="careeasy-faq-tab-scroll-track min-w-0 flex-1 md:flex-none md:overflow-visible">
+              <div
+                role="tablist"
+                aria-label="CareEasy FAQ categories"
+                className="careeasy-faq-tablist flex snap-x gap-2 overflow-x-auto px-2 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
+                {categories.map((category, categoryIndex) => {
+                  const isActive = activeCategoryIndex === categoryIndex;
+                  const panelId = `careeasy-faq-panel-${categoryIndex}`;
 
-                return (
-                  <button
-                    key={category.name}
-                    ref={(node) => {
-                      tabButtonRefs.current[categoryIndex] = node;
-                    }}
-                    type="button"
-                    role="tab"
-                    aria-selected={isActive}
-                    aria-controls={panelId}
-                    onClick={() => selectCategoryByIndex(categoryIndex, 'tab')}
-                    onKeyDown={(event) => handleTabKeyDown(event, categoryIndex)}
-                    className={[
-                      'careeasy-faq-tab snap-start shrink-0 rounded-full px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[var(--care-primary)] focus:ring-offset-2',
-                      isActive
-                        ? 'careeasy-faq-tab-active'
-                        : 'careeasy-faq-tab-idle',
-                    ].join(' ')}
-                  >
-                    {category.name}
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={category.name}
+                      ref={(node) => {
+                        tabButtonRefs.current[categoryIndex] = node;
+                      }}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      aria-controls={panelId}
+                      onClick={() =>
+                        selectCategoryByIndex(categoryIndex, 'tab')
+                      }
+                      onKeyDown={(event) =>
+                        handleTabKeyDown(event, categoryIndex)
+                      }
+                      className={[
+                        'careeasy-faq-tab shrink-0 snap-start rounded-full px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[var(--care-primary)] focus:ring-offset-2',
+                        isActive
+                          ? 'careeasy-faq-tab-active'
+                          : 'careeasy-faq-tab-idle',
+                      ].join(' ')}
+                    >
+                      {category.name}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
-            {/*
-              모바일 전용 다음 화살표입니다.
-              사용자가 탭을 직접 밀지 않아도 다음 FAQ로 이동할 수 있습니다.
-            */}
             <button
               type="button"
               aria-label="다음 FAQ 탭 보기"
               onClick={moveToNextCategory}
-              className="absolute right-2 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white/46 text-[var(--care-muted)] shadow-sm backdrop-blur-md transition hover:bg-white/78 hover:text-[var(--care-primary-dark)] active:scale-95 md:hidden"
+              className="careeasy-faq-tab-nav hidden shrink-0 max-md:flex"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
