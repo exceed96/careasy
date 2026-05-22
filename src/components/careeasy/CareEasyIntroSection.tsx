@@ -251,23 +251,23 @@ export function CareEasyIntroSection() {
                     <span className="careeasy-kicker">{slide.eyebrow}</span>
                   </div>
 
-                  <h1 className="text-[2.35rem] font-bold leading-[1.08] tracking-tight text-[var(--care-text)] sm:text-5xl md:text-6xl">
+                  <h1 className="text-3xl sm:text-[2.35rem] font-bold leading-[1.08] tracking-tight text-black sm:text-5xl md:text-6xl">
                     {slide.titleLines.map((line) => (
-                      <span key={line} className="block">
+                      <span key={line} className="block ">
                         {line}
                       </span>
                     ))}
                   </h1>
 
-                  <p className="mt-5 max-w-xl text-[0.98rem] leading-7 font-bold text-black md:mt-6 md:text-lg md:leading-8">
-                    {'descriptionLines' in slide
-                      ? slide.descriptionLines.map((line) => (
+                  {'descriptionLines' in slide ? (
+                    <p className="mt-5 max-w-xl ma text-sm font-bold leading-7 text-black max-md:w-fit max-md:rounded-2xl max-md:border max-md:border-white/60 max-md:bg-orange-50/72 max-md:px-4 max-md:py-3 max-md:shadow-[var(--care-shadow-soft)] max-md:backdrop-blur-md sm:text-[0.98rem] md:mt-6 md:w-auto md:border-0 md:bg-transparent md:px-0 md:py-0 md:shadow-none md:backdrop-blur-0 md:text-lg md:leading-8">
+                      {slide.descriptionLines.map((line) => (
                         <span key={line} className="block">
                           {line}
                         </span>
-                      ))
-                      : null}
-                  </p>
+                      ))}
+                    </p>
+                  ) : null}
 
                   <div className="mt-7 grid gap-3 sm:flex sm:flex-row">
                     {slide.buttons.map((button, buttonIndex) => {
