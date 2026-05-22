@@ -17,7 +17,11 @@ export function CareEasyWorkflowSection() {
             {careEasyWorkflow.title}
           </h2>
 
-          <p className="careeasy-balanced-text mt-5 text-base leading-7 text-[var(--care-muted)] md:text-lg md:leading-8">
+          <p className="careeasy-balanced-text mt-5 text-base leading-7 text-[var(--care-muted)] md:hidden">
+            기록부터 확인 응답까지 흐름만 남깁니다.
+          </p>
+
+          <p className="careeasy-balanced-text mt-5 hidden text-lg leading-8 text-[var(--care-muted)] md:block">
             기록은 한 번으로 끝나지 않습니다. 다음 담당자가 바로 이해하고 이어받을 수 있어야 합니다.
           </p>
         </div>
@@ -31,10 +35,10 @@ export function CareEasyWorkflowSection() {
             return (
               <article
                 key={step.number}
-                className="careeasy-clean-card rounded-[2rem] p-6 md:p-7"
+                className="careeasy-clean-card rounded-[1.5rem] p-4 md:rounded-[2rem] md:p-7"
               >
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between">
+                <div className="relative z-10 flex items-start gap-4 md:block">
+                  <div className="flex shrink-0 items-center justify-between">
                     <div className="careeasy-flow-number flex h-11 w-11 items-center justify-center rounded-2xl text-sm font-black">
                       {step.number}
                     </div>
@@ -48,13 +52,19 @@ export function CareEasyWorkflowSection() {
                     </div>
                   </div>
 
-                  <h3 className="careeasy-balanced-text mt-6 text-xl font-bold tracking-tight text-[var(--care-text)]">
-                    {step.title}
-                  </h3>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="careeasy-balanced-text text-lg font-bold tracking-tight text-[var(--care-text)] md:mt-6 md:text-xl">
+                      {step.title}
+                    </h3>
 
-                  <p className="careeasy-balanced-text mt-3 text-sm leading-7 text-[var(--care-muted)] md:text-base">
-                    {step.body}
-                  </p>
+                    <p className="careeasy-balanced-text mt-1.5 text-sm leading-6 text-[var(--care-muted)] md:hidden">
+                      {step.mobileBody}
+                    </p>
+
+                    <p className="careeasy-balanced-text mt-3 hidden text-base leading-7 text-[var(--care-muted)] md:block">
+                      {step.body}
+                    </p>
+                  </div>
                 </div>
               </article>
             );

@@ -7,6 +7,7 @@ export const careEasyProblem = {
   title: '공유는 했지만, 인수인계는 되지 않았습니다.',
   description:
     '가족 단톡방에는 많은 말이 오가지만, 정작 다음에 부모님을 돌볼 사람이 알아야 할 핵심 정보는 쉽게 묻힙니다.',
+  mobileDescription: '단톡방에 묻힌 돌봄 기록을 다음 가족이 바로 볼 수 있게 정리합니다.',
   cards: [
     {
       title: '중요한 기록이 흩어집니다',

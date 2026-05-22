@@ -260,7 +260,7 @@ export function CareEasyIntroSection() {
                     <span className="careeasy-kicker">{slide.eyebrow}</span>
                   </div>
 
-                  <h1 className="careeasy-balanced-text text-[2rem] font-bold leading-[1.12] tracking-tight text-[var(--care-text)] sm:text-5xl md:text-6xl">
+                  <h1 className="careeasy-balanced-text text-[1.85rem] font-semibold leading-[1.16] tracking-tight text-[var(--care-text)] sm:text-5xl sm:font-bold md:text-6xl">
                     {slide.titleLines.map((line) => (
                       <span key={line} className="block">
                         {line}
@@ -269,7 +269,7 @@ export function CareEasyIntroSection() {
                   </h1>
 
                   {'descriptionLines' in slide ? (
-                    <p className="careeasy-balanced-text mt-5 max-w-lg rounded-2xl bg-[rgba(255,248,241,0.56)] px-4 py-3 text-sm font-semibold leading-7 text-[rgba(59,54,49,0.88)] ring-1 ring-white/30 backdrop-blur-[3px] sm:text-[0.98rem] md:mt-6 md:max-w-xl md:bg-transparent md:px-0 md:py-0 md:text-lg md:font-medium md:leading-8 md:ring-0 md:backdrop-blur-0">
+                    <p className="careeasy-balanced-text mt-5 max-w-lg rounded-2xl bg-[linear-gradient(90deg,rgba(255,248,241,0.56)_0%,rgba(255,248,241,0.68)_58%,rgba(255,248,241,0.78)_100%)] px-4 py-3 text-sm font-semibold leading-7 text-[rgba(59,54,49,0.88)] ring-1 ring-white/30 backdrop-blur-[3px] sm:text-[0.98rem] md:mt-6 md:max-w-xl md:bg-none md:px-0 md:py-0 md:text-lg md:font-medium md:leading-8 md:ring-0 md:backdrop-blur-0">
                       {slide.descriptionLines.map((line) => (
                         <span key={line} className="block">
                           {line}

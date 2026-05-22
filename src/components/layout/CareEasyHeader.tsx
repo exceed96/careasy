@@ -67,7 +67,7 @@ export function CareEasyHeader() {
             앱 화면
           </a>
           <a href="#faq" className="transition hover:text-[var(--care-text)] font-bold text-lg">
-            FAQ
+            자주 묻는 질문
           </a>
           <a href="#trial" className="transition hover:text-[var(--care-text)] font-bold text-lg">
             무료 체험

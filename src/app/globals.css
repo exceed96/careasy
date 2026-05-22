@@ -371,6 +371,21 @@ a {
   box-shadow: 0 0 0 5px rgba(233, 85, 19, 0.1);
 }
 
+@media (max-width: 767px) {
+  .careeasy-faq-role-card::before {
+    left: 0.8rem;
+    top: 1.1rem;
+    width: 0.32rem;
+    height: 0.32rem;
+    box-shadow: none;
+  }
+
+  .careeasy-faq-role-card:hover::before,
+  .careeasy-faq-role-card-active::before {
+    box-shadow: 0 0 0 4px rgba(233, 85, 19, 0.08);
+  }
+}
+
 /*
   FAQ tabs.
   문구 안내 없이도 가로로 이어져 있다는 느낌이 나도록

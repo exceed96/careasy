@@ -194,8 +194,8 @@ export function CareEasyFaqSection() {
             </p>
           </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {careEasyFaqGuide.options.map((option) => {
+          <div className="mt-5 grid grid-cols-2 gap-2 md:mt-6 md:gap-3 lg:grid-cols-3">
+            {careEasyFaqGuide.options.map((option, optionIndex) => {
               const targetIndex = getCategoryIndexByName(option.targetCategory);
               const isSelected = activeCategoryIndex === targetIndex;
 
@@ -205,15 +205,16 @@ export function CareEasyFaqSection() {
                   type="button"
                   onClick={() => selectCategoryByName(option.targetCategory)}
                   className={[
-                    'careeasy-faq-role-card rounded-2xl py-4 pl-8 pr-4 text-left focus:outline-none focus:ring-2 focus:ring-[var(--care-primary)] focus:ring-offset-2',
+                    'careeasy-faq-role-card rounded-2xl py-3 pl-7 pr-3 text-left focus:outline-none focus:ring-2 focus:ring-[var(--care-primary)] focus:ring-offset-2 md:py-4 md:pl-8 md:pr-4',
+                    optionIndex === 0 ? 'col-span-2 md:col-span-1' : '',
                     isSelected ? 'careeasy-faq-role-card-active' : '',
                   ].join(' ')}
                 >
-                  <span className="careeasy-balanced-text block text-base font-bold text-[var(--care-text)]">
+                  <span className="careeasy-balanced-text block text-sm font-bold leading-6 text-[var(--care-text)] md:text-base md:leading-normal">
                     {option.label}
                   </span>
 
-                  <span className="careeasy-balanced-text mt-1 block text-sm leading-6 text-[var(--care-muted)]">
+                  <span className="careeasy-balanced-text mt-1 hidden text-sm leading-6 text-[var(--care-muted)] md:block">
                     {option.helper}
                   </span>
                 </button>
@@ -234,7 +235,7 @@ export function CareEasyFaqSection() {
             */}
             <button
               type="button"
-              aria-label="이전 FAQ 탭 보기"
+              aria-label="이전 자주 묻는 질문 탭 보기"
               onClick={moveToPreviousCategory}
               className="careeasy-faq-tab-nav hidden shrink-0 max-md:flex"
             >
@@ -244,7 +245,7 @@ export function CareEasyFaqSection() {
             <div className="careeasy-faq-tab-scroll-track min-w-0 flex-1 md:flex-none md:overflow-visible">
               <div
                 role="tablist"
-                aria-label="CareEasy FAQ categories"
+                aria-label="CareEasy 자주 묻는 질문 카테고리"
                 className="careeasy-faq-tablist flex snap-x gap-2 overflow-x-auto px-2 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               >
                 {categories.map((category, categoryIndex) => {
@@ -283,7 +284,7 @@ export function CareEasyFaqSection() {
 
             <button
               type="button"
-              aria-label="다음 FAQ 탭 보기"
+              aria-label="다음 자주 묻는 질문 탭 보기"
               onClick={moveToNextCategory}
               className="careeasy-faq-tab-nav hidden shrink-0 max-md:flex"
             >
@@ -305,7 +306,7 @@ export function CareEasyFaqSection() {
             >
               <div className="mb-6">
                 <p className="text-sm font-bold text-[var(--care-primary-dark)]">
-                  선택된 FAQ
+                  선택된 질문
                 </p>
 
                 <h3 className="careeasy-balanced-text mt-1 text-2xl font-bold tracking-tight">
@@ -317,7 +318,7 @@ export function CareEasyFaqSection() {
                 </p>
               </div>
 
-              <div className="space-y-3">
+              <div className="max-h-[58vh] space-y-3 overflow-y-auto pr-1 [scrollbar-width:thin] md:max-h-none md:overflow-visible md:pr-0">
                 {activeCategory.items.map((item) => (
                   <details
                     key={`${activeCategory.name}-${item.question}`}

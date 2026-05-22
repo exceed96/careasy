@@ -3,10 +3,10 @@
  * 각 버튼은 FAQ의 특정 탭 이름과 연결됩니다.
  */
 export const careEasyFaqGuide = {
-  eyebrow: '내 상황에 맞는 FAQ 찾기',
+  eyebrow: '내 상황에 맞는 질문 찾기',
   question: '가족 돌봄에서 지금 내 위치는 어디에 가깝나요?',
   description:
-    '가장 가까운 역할을 선택하면, 그 역할에 맞는 FAQ 탭으로 바로 이동합니다.',
+    '가장 가까운 역할을 선택하면, 그 역할에 맞는 질문으로 바로 이동합니다.',
   options: [
     {
       label: '내가 주로 챙기고 있어요',

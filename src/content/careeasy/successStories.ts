@@ -3,7 +3,7 @@
  * 실제 고객 사례가 준비되면 stories 배열을 교체하면 됩니다.
  */
 export const careEasySuccessStories = {
-  eyebrow: "Success stories",
+  eyebrow: "고객 경험 사례",
   title: "가족 돌봄이 더 가벼워진 이야기",
   description:
     "케어이지를 사용하는 가족들이 기록과 인수인계를 어떻게 바꿨는지, 실제 사용 후기 형식으로 소개합니다.",

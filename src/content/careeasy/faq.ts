@@ -14,7 +14,7 @@ export type CareEasyFaqCategory = {
 };
 
 export const careEasyFaq = {
-  eyebrow: "FAQ",
+  eyebrow: "자주 묻는 질문",
   title: "케어이지를 시작하기 전에 자주 묻는 질문",
   description:
     "가족 역할별로 궁금한 내용을 나눠 정리했습니다. 부모님 돌봄을 혼자 떠안지 않고 함께 이어가기 위한 질문부터 확인해보세요.",

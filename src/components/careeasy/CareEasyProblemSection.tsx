@@ -7,7 +7,7 @@ import { careEasyProblem } from '@/content/careeasy/problem';
  */
 export function CareEasyProblemSection() {
   return (
-    <section id="problem" className="bg-white py-20">
+    <section id="problem" className="bg-white py-12 md:py-20">
       <CareEasyContainer>
         <div className="max-w-4xl">
           <p className="text-sm font-bold uppercase tracking-wide text-[var(--care-primary-dark)]">
@@ -18,21 +18,25 @@ export function CareEasyProblemSection() {
             {careEasyProblem.title}
           </h2>
 
-          <p className="careeasy-balanced-text mt-5 text-lg leading-8 text-[var(--care-muted)]">
+          <p className="careeasy-balanced-text mt-5 text-base leading-7 text-[var(--care-muted)] md:hidden">
+            {careEasyProblem.mobileDescription}
+          </p>
+
+          <p className="careeasy-balanced-text mt-5 hidden text-lg leading-8 text-[var(--care-muted)] md:block">
             {careEasyProblem.description}
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <div className="mt-7 grid gap-3 md:mt-10 md:grid-cols-3 md:gap-5">
           {careEasyProblem.cards.map((card) => (
             <article
               key={card.title}
-              className="careeasy-card rounded-[var(--care-radius-2xl)] p-6"
+              className="careeasy-card rounded-[var(--care-radius-2xl)] p-4 md:p-6"
             >
               <h3 className="careeasy-balanced-text text-xl font-bold">
                 {card.title}
               </h3>
-              <p className="careeasy-balanced-text mt-3 leading-7 text-[var(--care-muted)]">
+              <p className="careeasy-balanced-text mt-2 text-sm leading-6 text-[var(--care-muted)] md:mt-3 md:text-base md:leading-7">
                 {card.body}
               </p>
             </article>
