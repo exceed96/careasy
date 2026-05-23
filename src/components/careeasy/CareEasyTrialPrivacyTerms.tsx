@@ -57,7 +57,11 @@ export function CareEasyTrialPrivacyTerms({
 }: CareEasyTrialPrivacyTermsProps) {
   const content =
     variant === 'policy' ? careEasyPrivacyPolicy : careEasyTrialPrivacyConsent;
-  const { documentTitle, intro, sections, effectiveDate, supplement } = content;
+  const { documentTitle, intro, sections, effectiveDate } = content;
+  const supplement =
+    variant === 'policy' && 'supplement' in content
+      ? content.supplement
+      : undefined;
 
   return (
     <div className={`space-y-4 text-left ${className}`.trim()}>
