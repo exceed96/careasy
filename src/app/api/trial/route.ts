@@ -9,6 +9,7 @@ type TrialRequestBody = {
   pageUrl?: string;
   referrer?: string;
   utm?: Record<string, string>;
+  privacyAgreed?: boolean;
 };
 
 const FIREBASE_DATABASE_URL = process.env.FIREBASE_DATABASE_URL;
@@ -72,6 +73,16 @@ export async function POST(request: Request) {
       );
     }
 
+    if (!body.privacyAgreed) {
+      return NextResponse.json(
+        {
+          ok: false,
+          message: '개인정보 처리 약관에 동의해 주세요.',
+        },
+        { status: 400 },
+      );
+    }
+
     const firebaseEndpoint = createFirebaseEndpoint();
 
     if (!firebaseEndpoint) {
@@ -96,6 +107,8 @@ export async function POST(request: Request) {
       pageUrl: body.pageUrl ?? '',
       referrer: body.referrer ?? referer,
       utm: body.utm ?? {},
+      privacyAgreed: true,
+      privacyAgreedAt: new Date().toISOString(),
       userAgent,
       createdAt: new Date().toISOString(),
     };

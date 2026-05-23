@@ -10,6 +10,7 @@ import {
   CAREEASY_TRIAL_MODAL_EVENT,
   type CareEasyTrialModalDetail,
 } from '@/lib/openCareEasyTrialModal';
+import { CareEasyTrialPrivacyTermsPanel } from '@/components/careeasy/CareEasyTrialPrivacyTerms';
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -81,6 +82,8 @@ export function CareEasyTrialModal() {
   const [contact, setContact] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
+  const [privacyAgreed, setPrivacyAgreed] = useState(false);
+  const [isPrivacyTermsOpen, setIsPrivacyTermsOpen] = useState(false);
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -92,6 +95,7 @@ export function CareEasyTrialModal() {
    */
   const closeModal = useCallback(() => {
     setIsOpen(false);
+    setIsPrivacyTermsOpen(false);
 
     trackCareEasyEvent(careEasyEvents.trialModalClose, {
       source,
@@ -111,6 +115,8 @@ export function CareEasyTrialModal() {
       setSource(nextSource);
       setSubmitState('idle');
       setErrorMessage('');
+      setPrivacyAgreed(false);
+      setIsPrivacyTermsOpen(false);
 
       trackCareEasyEvent(careEasyEvents.trialModalOpen, {
         source: nextSource,
@@ -168,6 +174,11 @@ export function CareEasyTrialModal() {
       return;
     }
 
+    if (!privacyAgreed) {
+      setErrorMessage('개인정보 처리 약관에 동의해 주세요.');
+      return;
+    }
+
     setSubmitState('submitting');
     setErrorMessage('');
 
@@ -190,6 +201,7 @@ export function CareEasyTrialModal() {
           age,
           gender,
           source,
+          privacyAgreed: true,
           ...attribution,
         }),
       });
@@ -242,41 +254,66 @@ export function CareEasyTrialModal() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="careeasy-trial-modal-title"
-        className="max-h-[calc(100dvh-1.5rem)] w-full max-w-md overflow-y-auto rounded-[1.75rem] border border-[var(--care-border-soft)] bg-[var(--care-bg-soft)] p-5 shadow-[0_-16px_54px_rgba(32,36,38,0.18)] sm:rounded-[2rem] sm:p-6"
+        className={`flex w-full max-w-md flex-col overflow-hidden rounded-[1.75rem] border border-[var(--care-border-soft)] bg-[var(--care-bg-soft)] p-4 shadow-[0_-16px_54px_rgba(32,36,38,0.18)] sm:rounded-[2rem] sm:p-5 ${
+          isPrivacyTermsOpen
+            ? 'h-[calc(100dvh-1.5rem)]'
+            : 'max-h-[calc(100dvh-1.5rem)]'
+        }`}
       >
-        <div
-          className="mx-auto mb-5 h-1.5 w-10 rounded-full bg-[rgba(117,107,98,0.2)] sm:hidden"
-          aria-hidden="true"
-        />
+        <div className="shrink-0">
+          <div
+            className="mx-auto mb-3 h-1.5 w-10 rounded-full bg-[rgba(117,107,98,0.2)] sm:hidden"
+            aria-hidden="true"
+          />
 
-        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-start justify-between gap-3">
           <div>
             <p className="careeasy-kicker">1개월 무료 체험</p>
 
             <h2
               id="careeasy-trial-modal-title"
-              className="careeasy-balanced-text mt-3 text-xl font-bold leading-tight tracking-tight text-[var(--care-text)] sm:text-2xl"
+              className="careeasy-balanced-text mt-2 text-lg font-bold leading-tight tracking-tight text-[var(--care-text)] sm:mt-3 sm:text-2xl"
             >
-              케어이지 무료 체험을 안내해드릴게요.
+              {isPrivacyTermsOpen
+                ? '개인정보 처리 약관'
+                : '케어이지 무료 체험을 안내해드릴게요.'}
             </h2>
 
-            <p className="careeasy-balanced-text mt-2 text-sm leading-6 text-[var(--care-muted)]">
-              전화번호 또는 이메일만 남기면, 무료 체험 안내를 보내드립니다.
-            </p>
+            {!isPrivacyTermsOpen ? (
+              <p className="careeasy-balanced-text mt-1.5 text-sm leading-5 text-[var(--care-muted)] sm:mt-2 sm:leading-6">
+                전화번호 또는 이메일만 남기면, 무료 체험 안내를 보내드립니다.
+              </p>
+            ) : (
+              <p className="careeasy-balanced-text mt-1.5 text-sm leading-5 text-[var(--care-muted)]">
+                아래 내용을 확인한 뒤 신청 화면에서 동의해 주세요.
+              </p>
+            )}
           </div>
 
           <button
             type="button"
             onClick={closeModal}
             aria-label="무료 체험 신청 모달 닫기"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--care-border-soft)] bg-white/72 text-[var(--care-muted)] transition hover:bg-white hover:text-[var(--care-text)]"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--care-border-soft)] bg-white/72 text-[var(--care-muted)] transition hover:bg-white hover:text-[var(--care-text)] sm:h-10 sm:w-10"
           >
             <X className="h-5 w-5" />
           </button>
+          </div>
         </div>
 
-        {submitState === 'success' ? (
-          <div className="mt-7 rounded-[1.5rem] border border-[var(--care-border-soft)] bg-white/72 p-5 text-center">
+        <div
+          className={
+            isPrivacyTermsOpen
+              ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
+              : undefined
+          }
+        >
+        {isPrivacyTermsOpen ? (
+          <CareEasyTrialPrivacyTermsPanel
+            onBack={() => setIsPrivacyTermsOpen(false)}
+          />
+        ) : submitState === 'success' ? (
+          <div className="mt-5 rounded-[1.5rem] border border-[var(--care-border-soft)] bg-white/72 p-5 text-center sm:mt-6">
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--care-primary-soft)] text-[var(--care-primary-dark)]">
               <CheckCircle2 className="h-6 w-6" />
             </div>
@@ -298,7 +335,7 @@ export function CareEasyTrialModal() {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+          <form onSubmit={handleSubmit} className="mt-4 space-y-3.5 sm:mt-5 sm:space-y-4">
             <div>
               <label
                 htmlFor="trial-contact"
@@ -317,7 +354,7 @@ export function CareEasyTrialModal() {
                 value={contact}
                 onChange={(event) => setContact(event.target.value)}
                 placeholder="010-0000-0000 / email@example.com"
-                className="mt-2 h-[3.25rem] min-h-[3.25rem] w-full rounded-2xl border border-[rgba(233,85,19,0.24)] bg-white px-4 text-base font-semibold text-[var(--care-text)] shadow-[0_8px_20px_rgba(32,36,38,0.05)] outline-none transition placeholder:font-medium placeholder:text-[var(--care-muted-light)] focus:border-[var(--care-primary)]"
+                className="mt-1.5 h-12 w-full rounded-2xl border border-[rgba(233,85,19,0.24)] bg-white px-4 text-base font-semibold text-[var(--care-text)] shadow-[0_8px_20px_rgba(32,36,38,0.05)] outline-none transition placeholder:font-medium placeholder:text-[var(--care-muted-light)] focus:border-[var(--care-primary)]"
               />
 
               {contact && contactType === 'unknown' ? (
@@ -328,7 +365,7 @@ export function CareEasyTrialModal() {
             </div>
 
             <div>
-              <div className="mb-2 flex items-center justify-between gap-3">
+              <div className="mb-1.5 flex items-center justify-between gap-3">
                 <p className="text-sm font-bold text-[var(--care-text)]">
                   기본 정보
                 </p>
@@ -347,13 +384,13 @@ export function CareEasyTrialModal() {
                     나이
                   </label>
 
-                  <div className="relative mt-2">
+                  <div className="relative mt-1.5">
                     <select
                       id="trial-age"
                       name="age"
                       value={age}
                       onChange={(event) => setAge(event.target.value)}
-                      className="h-12 w-full appearance-none rounded-2xl border border-[var(--care-border)] bg-white/90 px-4 pr-10 text-sm font-semibold text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
+                      className="h-11 w-full appearance-none rounded-2xl border border-[var(--care-border)] bg-white/90 px-4 pr-10 text-sm font-semibold text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
                     >
                       <option value="">선택 안 함</option>
                       <option value="20대">20대 이하</option>
@@ -377,13 +414,13 @@ export function CareEasyTrialModal() {
                     성별
                   </label>
 
-                  <div className="relative mt-2">
+                  <div className="relative mt-1.5">
                     <select
                       id="trial-gender"
                       name="gender"
                       value={gender}
                       onChange={(event) => setGender(event.target.value)}
-                      className="h-12 w-full appearance-none rounded-2xl border border-[var(--care-border)] bg-white/90 px-4 pr-10 text-sm font-semibold text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
+                      className="h-11 w-full appearance-none rounded-2xl border border-[var(--care-border)] bg-white/90 px-4 pr-10 text-sm font-semibold text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
                     >
                       <option value="">선택 안 함</option>
                       <option value="여성">여성</option>
@@ -398,17 +435,47 @@ export function CareEasyTrialModal() {
               </div>
             </div>
 
+            <div className="rounded-2xl border border-[var(--care-border-soft)] bg-white/55 px-3 py-2.5">
+              <label className="flex cursor-pointer items-start gap-2.5">
+                <input
+                  type="checkbox"
+                  name="privacyAgreed"
+                  checked={privacyAgreed}
+                  onChange={(event) => {
+                    setPrivacyAgreed(event.target.checked);
+
+                    if (event.target.checked && errorMessage === '개인정보 처리 약관에 동의해 주세요.') {
+                      setErrorMessage('');
+                    }
+                  }}
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-[var(--care-border)] text-[var(--care-primary)] accent-[var(--care-primary)]"
+                />
+
+                <span className="text-sm leading-5 text-[var(--care-text)]">
+                  <span className="font-bold text-[var(--care-primary)]">[필수]</span>{' '}
+                  개인정보 처리 약관에 동의합니다.{' '}
+                  <button
+                    type="button"
+                    onClick={() => setIsPrivacyTermsOpen(true)}
+                    className="font-semibold text-[var(--care-primary-dark)] underline underline-offset-2"
+                  >
+                    약관 보기
+                  </button>
+                </span>
+              </label>
+            </div>
+
             {errorMessage ? (
-              <p className="rounded-2xl bg-[var(--care-primary-soft)] px-4 py-3 text-sm font-medium text-[var(--care-primary-dark)]">
+              <p className="rounded-2xl bg-[var(--care-primary-soft)] px-3 py-2.5 text-sm font-medium text-[var(--care-primary-dark)]">
                 {errorMessage}
               </p>
             ) : null}
 
             <button
               type="submit"
-              disabled={submitState === 'submitting'}
+              disabled={submitState === 'submitting' || !privacyAgreed}
               data-careeasy-event="trial_form_submit"
-              className="careeasy-pressable careeasy-cta-primary inline-flex min-h-[3.25rem] w-full items-center justify-center rounded-full px-6 py-3.5 text-base font-bold disabled:cursor-not-allowed disabled:opacity-60"
+              className="careeasy-pressable careeasy-cta-primary inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 py-3 text-base font-bold disabled:cursor-not-allowed disabled:opacity-60"
             >
               {submitState === 'submitting' ? (
                 <span className="inline-flex items-center gap-2">
@@ -419,12 +486,9 @@ export function CareEasyTrialModal() {
                 '무료 체험 신청하기'
               )}
             </button>
-
-            <p className="rounded-2xl bg-white/55 px-3 py-2 text-center text-xs leading-5 text-[var(--care-muted)]">
-              제출 시 입력하신 개인정보는 문의/신청 처리 목적 외에는 사용되지 않습니다.
-            </p>
           </form>
         )}
+        </div>
       </section>
     </div>
   );

@@ -7,6 +7,7 @@ import { CareEasyAppPreviewSection } from '@/components/careeasy/CareEasyAppPrev
 import { CareEasySuccessStoriesSection } from '@/components/careeasy/CareEasySuccessStoriesSection';
 import { CareEasyFaqSection } from '@/components/careeasy/CareEasyFaqSection';
 import { CareEasyTrialStartSection } from '@/components/careeasy/CareEasyTrialStartSection';
+import { CareEasyPrivacyPolicyModal } from '@/components/careeasy/CareEasyPrivacyPolicyModal';
 import { CareEasyTrialModal } from '@/components/careeasy/CareEasyTrialModal';
 
 /**
@@ -29,6 +30,7 @@ export default function HomePage() {
       </main>
       <CareEasyFooter />
       <CareEasyTrialModal />
+      <CareEasyPrivacyPolicyModal />
     </>
   );
 }
