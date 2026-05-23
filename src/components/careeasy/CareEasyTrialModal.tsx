@@ -254,11 +254,10 @@ export function CareEasyTrialModal() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="careeasy-trial-modal-title"
-        className={`flex w-full max-w-md flex-col overflow-hidden rounded-[1.75rem] border border-[var(--care-border-soft)] bg-[var(--care-bg-soft)] p-4 shadow-[0_-16px_54px_rgba(32,36,38,0.18)] sm:rounded-[2rem] sm:p-5 ${
-          isPrivacyTermsOpen
-            ? 'h-[calc(100dvh-1.5rem)]'
-            : 'max-h-[calc(100dvh-1.5rem)]'
-        }`}
+        className={`flex w-full max-w-md flex-col overflow-hidden rounded-[1.75rem] border border-[var(--care-border-soft)] bg-[var(--care-bg-soft)] p-4 shadow-[0_-16px_54px_rgba(32,36,38,0.18)] sm:rounded-[2rem] sm:p-5 ${isPrivacyTermsOpen
+          ? 'h-[calc(100dvh-1.5rem)]'
+          : 'max-h-[calc(100dvh-1.5rem)]'
+          }`}
       >
         <div className="shrink-0">
           <div
@@ -267,37 +266,37 @@ export function CareEasyTrialModal() {
           />
 
           <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="careeasy-kicker">1개월 무료 체험</p>
+            <div>
+              <p className="careeasy-kicker">1개월 무료 체험</p>
 
-            <h2
-              id="careeasy-trial-modal-title"
-              className="careeasy-balanced-text mt-2 text-lg font-bold leading-tight tracking-tight text-[var(--care-text)] sm:mt-3 sm:text-2xl"
+              <h2
+                id="careeasy-trial-modal-title"
+                className="careeasy-balanced-text mt-2 text-lg font-bold leading-tight tracking-tight text-[var(--care-text)] sm:mt-3 sm:text-2xl"
+              >
+                {isPrivacyTermsOpen
+                  ? '개인정보 처리 약관'
+                  : '케어이지 무료 체험을 안내해드릴게요.'}
+              </h2>
+
+              {!isPrivacyTermsOpen ? (
+                <p className="careeasy-balanced-text mt-1.5 text-sm leading-5 text-[var(--care-muted)] sm:mt-2 sm:leading-6">
+                  전화번호 또는 이메일만 남기면, 무료 체험 안내를 보내드립니다.
+                </p>
+              ) : (
+                <p className="careeasy-balanced-text mt-1.5 text-sm leading-5 text-[var(--care-muted)]">
+                  아래 내용을 확인한 뒤 신청 화면에서 동의해 주세요.
+                </p>
+              )}
+            </div>
+
+            <button
+              type="button"
+              onClick={closeModal}
+              aria-label="무료 체험 신청 모달 닫기"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--care-border-soft)] bg-white/72 text-[var(--care-muted)] transition hover:bg-white hover:text-[var(--care-text)] sm:h-10 sm:w-10"
             >
-              {isPrivacyTermsOpen
-                ? '개인정보 처리 약관'
-                : '케어이지 무료 체험을 안내해드릴게요.'}
-            </h2>
-
-            {!isPrivacyTermsOpen ? (
-              <p className="careeasy-balanced-text mt-1.5 text-sm leading-5 text-[var(--care-muted)] sm:mt-2 sm:leading-6">
-                전화번호 또는 이메일만 남기면, 무료 체험 안내를 보내드립니다.
-              </p>
-            ) : (
-              <p className="careeasy-balanced-text mt-1.5 text-sm leading-5 text-[var(--care-muted)]">
-                아래 내용을 확인한 뒤 신청 화면에서 동의해 주세요.
-              </p>
-            )}
-          </div>
-
-          <button
-            type="button"
-            onClick={closeModal}
-            aria-label="무료 체험 신청 모달 닫기"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--care-border-soft)] bg-white/72 text-[var(--care-muted)] transition hover:bg-white hover:text-[var(--care-text)] sm:h-10 sm:w-10"
-          >
-            <X className="h-5 w-5" />
-          </button>
+              <X className="h-5 w-5" />
+            </button>
           </div>
         </div>
 
@@ -308,186 +307,187 @@ export function CareEasyTrialModal() {
               : undefined
           }
         >
-        {isPrivacyTermsOpen ? (
-          <CareEasyTrialPrivacyTermsPanel
-            onBack={() => setIsPrivacyTermsOpen(false)}
-          />
-        ) : submitState === 'success' ? (
-          <div className="mt-5 rounded-[1.5rem] border border-[var(--care-border-soft)] bg-white/72 p-5 text-center sm:mt-6">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--care-primary-soft)] text-[var(--care-primary-dark)]">
-              <CheckCircle2 className="h-6 w-6" />
-            </div>
+          {isPrivacyTermsOpen ? (
+            <CareEasyTrialPrivacyTermsPanel
+              onBack={() => setIsPrivacyTermsOpen(false)}
+            />
+          ) : submitState === 'success' ? (
+            <div className="mt-5 rounded-[1.5rem] border border-[var(--care-border-soft)] bg-white/72 p-5 text-center sm:mt-6">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--care-primary-soft)] text-[var(--care-primary-dark)]">
+                <CheckCircle2 className="h-6 w-6" />
+              </div>
 
-            <h3 className="text-lg font-bold text-[var(--care-text)]">
-              신청이 접수됐습니다.
-            </h3>
+              <h3 className="text-lg font-bold text-[var(--care-text)]">
+                신청이 접수됐습니다.
+              </h3>
 
-            <p className="mt-2 text-sm leading-6 text-[var(--care-muted)]">
-              남겨주신 연락처로 케어이지 무료 체험 안내를 보내드릴게요.
-            </p>
+              <p className="mt-2 text-sm leading-6 text-[var(--care-muted)]">
+                현재 케어이지는 더 나은 체험을 위해 준비 중이며, 빠른 시일 내에 신청해주신 분들께 무료 체험 안내를 드릴 예정입니다.
+                <br />감사합니다.
+              </p>
 
-            <button
-              type="button"
-              onClick={closeModal}
-              className="careeasy-pressable careeasy-cta-primary mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full px-5 py-3 text-sm font-bold"
-            >
-              확인
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="mt-4 space-y-3.5 sm:mt-5 sm:space-y-4">
-            <div>
-              <label
-                htmlFor="trial-contact"
-                className="text-sm font-bold text-[var(--care-text)]"
+              <button
+                type="button"
+                onClick={closeModal}
+                className="careeasy-pressable careeasy-cta-primary mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full px-5 py-3 text-sm font-bold"
               >
-                전화번호 또는 이메일{' '}
-                <span className="text-[var(--care-primary)]">*</span>
-              </label>
-
-              <input
-                id="trial-contact"
-                name="contact"
-                type="text"
-                inputMode="text"
-                autoComplete="email"
-                value={contact}
-                onChange={(event) => setContact(event.target.value)}
-                placeholder="010-0000-0000 / email@example.com"
-                className="mt-1.5 h-12 w-full rounded-2xl border border-[rgba(233,85,19,0.24)] bg-white px-4 text-base font-semibold text-[var(--care-text)] shadow-[0_8px_20px_rgba(32,36,38,0.05)] outline-none transition placeholder:font-medium placeholder:text-[var(--care-muted-light)] focus:border-[var(--care-primary)]"
-              />
-
-              {contact && contactType === 'unknown' ? (
-                <p className="mt-2 text-xs font-medium text-[var(--care-primary-dark)]">
-                  전화번호 또는 이메일 형식으로 입력해 주세요.
-                </p>
-              ) : null}
+                확인
+              </button>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="mt-4 space-y-3.5 sm:mt-5 sm:space-y-4">
+              <div>
+                <label
+                  htmlFor="trial-contact"
+                  className="text-sm font-bold text-[var(--care-text)]"
+                >
+                  전화번호 또는 이메일{' '}
+                  <span className="text-[var(--care-primary)]">*</span>
+                </label>
 
-            <div>
-              <div className="mb-1.5 flex items-center justify-between gap-3">
-                <p className="text-sm font-bold text-[var(--care-text)]">
-                  기본 정보
-                </p>
-
-                <span className="rounded-full bg-white/70 px-2.5 py-1 text-[0.7rem] font-bold text-[var(--care-muted)]">
-                  선택 사항
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label
-                    htmlFor="trial-age"
-                    className="text-xs font-bold text-[var(--care-muted)]"
-                  >
-                    나이
-                  </label>
-
-                  <div className="relative mt-1.5">
-                    <select
-                      id="trial-age"
-                      name="age"
-                      value={age}
-                      onChange={(event) => setAge(event.target.value)}
-                      className="h-11 w-full appearance-none rounded-2xl border border-[var(--care-border)] bg-white/90 px-4 pr-10 text-sm font-semibold text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
-                    >
-                      <option value="">선택 안 함</option>
-                      <option value="20대">20대 이하</option>
-                      <option value="30대">30대</option>
-                      <option value="40대">40대</option>
-                      <option value="50대">50대</option>
-                      <option value="60대 이상">60대 이상</option>
-                    </select>
-                    <ChevronDown
-                      className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--care-muted)]"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="trial-gender"
-                    className="text-xs font-bold text-[var(--care-muted)]"
-                  >
-                    성별
-                  </label>
-
-                  <div className="relative mt-1.5">
-                    <select
-                      id="trial-gender"
-                      name="gender"
-                      value={gender}
-                      onChange={(event) => setGender(event.target.value)}
-                      className="h-11 w-full appearance-none rounded-2xl border border-[var(--care-border)] bg-white/90 px-4 pr-10 text-sm font-semibold text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
-                    >
-                      <option value="">선택 안 함</option>
-                      <option value="여성">여성</option>
-                      <option value="남성">남성</option>
-                    </select>
-                    <ChevronDown
-                      className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--care-muted)]"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-2xl border border-[var(--care-border-soft)] bg-white/55 px-3 py-2.5">
-              <label className="flex cursor-pointer items-start gap-2.5">
                 <input
-                  type="checkbox"
-                  name="privacyAgreed"
-                  checked={privacyAgreed}
-                  onChange={(event) => {
-                    setPrivacyAgreed(event.target.checked);
-
-                    if (event.target.checked && errorMessage === '개인정보 처리 약관에 동의해 주세요.') {
-                      setErrorMessage('');
-                    }
-                  }}
-                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-[var(--care-border)] text-[var(--care-primary)] accent-[var(--care-primary)]"
+                  id="trial-contact"
+                  name="contact"
+                  type="text"
+                  inputMode="text"
+                  autoComplete="email"
+                  value={contact}
+                  onChange={(event) => setContact(event.target.value)}
+                  placeholder="010-0000-0000 / email@example.com"
+                  className="mt-1.5 h-12 w-full rounded-2xl border border-[rgba(233,85,19,0.24)] bg-white px-4 text-base font-semibold text-[var(--care-text)] shadow-[0_8px_20px_rgba(32,36,38,0.05)] outline-none transition placeholder:font-medium placeholder:text-[var(--care-muted-light)] focus:border-[var(--care-primary)]"
                 />
 
-                <span className="text-sm leading-5 text-[var(--care-text)]">
-                  <span className="font-bold text-[var(--care-primary)]">[필수]</span>{' '}
-                  개인정보 처리 약관에 동의합니다.{' '}
-                  <button
-                    type="button"
-                    onClick={() => setIsPrivacyTermsOpen(true)}
-                    className="font-semibold text-[var(--care-primary-dark)] underline underline-offset-2"
-                  >
-                    약관 보기
-                  </button>
-                </span>
-              </label>
-            </div>
+                {contact && contactType === 'unknown' ? (
+                  <p className="mt-2 text-xs font-medium text-[var(--care-primary-dark)]">
+                    전화번호 또는 이메일 형식으로 입력해 주세요.
+                  </p>
+                ) : null}
+              </div>
 
-            {errorMessage ? (
-              <p className="rounded-2xl bg-[var(--care-primary-soft)] px-3 py-2.5 text-sm font-medium text-[var(--care-primary-dark)]">
-                {errorMessage}
-              </p>
-            ) : null}
+              <div>
+                <div className="mb-1.5 flex items-center justify-between gap-3">
+                  <p className="text-sm font-bold text-[var(--care-text)]">
+                    기본 정보
+                  </p>
 
-            <button
-              type="submit"
-              disabled={submitState === 'submitting' || !privacyAgreed}
-              data-careeasy-event="trial_form_submit"
-              className="careeasy-pressable careeasy-cta-primary inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 py-3 text-base font-bold disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {submitState === 'submitting' ? (
-                <span className="inline-flex items-center gap-2">
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  신청 중
-                </span>
-              ) : (
-                '무료 체험 신청하기'
-              )}
-            </button>
-          </form>
-        )}
+                  <span className="rounded-full bg-white/70 px-2.5 py-1 text-[0.7rem] font-bold text-[var(--care-muted)]">
+                    선택 사항
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label
+                      htmlFor="trial-age"
+                      className="text-xs font-bold text-[var(--care-muted)]"
+                    >
+                      나이
+                    </label>
+
+                    <div className="relative mt-1.5">
+                      <select
+                        id="trial-age"
+                        name="age"
+                        value={age}
+                        onChange={(event) => setAge(event.target.value)}
+                        className="h-11 w-full appearance-none rounded-2xl border border-[var(--care-border)] bg-white/90 px-4 pr-10 text-sm font-semibold text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
+                      >
+                        <option value="">선택 안 함</option>
+                        <option value="20대">20대 이하</option>
+                        <option value="30대">30대</option>
+                        <option value="40대">40대</option>
+                        <option value="50대">50대</option>
+                        <option value="60대 이상">60대 이상</option>
+                      </select>
+                      <ChevronDown
+                        className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--care-muted)]"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="trial-gender"
+                      className="text-xs font-bold text-[var(--care-muted)]"
+                    >
+                      성별
+                    </label>
+
+                    <div className="relative mt-1.5">
+                      <select
+                        id="trial-gender"
+                        name="gender"
+                        value={gender}
+                        onChange={(event) => setGender(event.target.value)}
+                        className="h-11 w-full appearance-none rounded-2xl border border-[var(--care-border)] bg-white/90 px-4 pr-10 text-sm font-semibold text-[var(--care-text)] outline-none transition focus:border-[var(--care-primary)]"
+                      >
+                        <option value="">선택 안 함</option>
+                        <option value="여성">여성</option>
+                        <option value="남성">남성</option>
+                      </select>
+                      <ChevronDown
+                        className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--care-muted)]"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-[var(--care-border-soft)] bg-white/55 px-3 py-2.5">
+                <label className="flex cursor-pointer items-start gap-2.5">
+                  <input
+                    type="checkbox"
+                    name="privacyAgreed"
+                    checked={privacyAgreed}
+                    onChange={(event) => {
+                      setPrivacyAgreed(event.target.checked);
+
+                      if (event.target.checked && errorMessage === '개인정보 처리 약관에 동의해 주세요.') {
+                        setErrorMessage('');
+                      }
+                    }}
+                    className="mt-0.5 h-4 w-4 shrink-0 rounded border-[var(--care-border)] text-[var(--care-primary)] accent-[var(--care-primary)]"
+                  />
+
+                  <span className="text-sm leading-5 text-[var(--care-text)]">
+                    <span className="font-bold text-[var(--care-primary)]">[필수]</span>{' '}
+                    개인정보 처리 약관에 동의합니다.{' '}
+                    <button
+                      type="button"
+                      onClick={() => setIsPrivacyTermsOpen(true)}
+                      className="font-semibold text-[var(--care-primary-dark)] underline underline-offset-2"
+                    >
+                      약관 보기
+                    </button>
+                  </span>
+                </label>
+              </div>
+
+              {errorMessage ? (
+                <p className="rounded-2xl bg-[var(--care-primary-soft)] px-3 py-2.5 text-sm font-medium text-[var(--care-primary-dark)]">
+                  {errorMessage}
+                </p>
+              ) : null}
+
+              <button
+                type="submit"
+                disabled={submitState === 'submitting' || !privacyAgreed}
+                data-careeasy-event="trial_form_submit"
+                className="careeasy-pressable careeasy-cta-primary inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 py-3 text-base font-bold disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {submitState === 'submitting' ? (
+                  <span className="inline-flex items-center gap-2">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    신청 중
+                  </span>
+                ) : (
+                  '무료 체험 신청하기'
+                )}
+              </button>
+            </form>
+          )}
         </div>
       </section>
     </div>
