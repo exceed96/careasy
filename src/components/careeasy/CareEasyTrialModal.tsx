@@ -290,6 +290,9 @@ export function CareEasyTrialModal() {
             {!isPrivacyTermsOpen ? (
               <div className='flex flex-col gap-1'>
                 <p className="careeasy-balanced-text mt-1.5 text-xs sm:text-sm leading-5 text-[var(--care-muted)] sm:mt-2 sm:leading-6">
+                  가족 단톡방 속 반복되는 돌봄 스트레스를 줄여보세요.
+                </p>
+                <p className="careeasy-balanced-text text-xs sm:text-sm leading-5 text-[var(--care-muted)] sm:leading-6">
                   전화번호 또는 이메일만 남기면, 무료 체험 안내를 보내드립니다.
                 </p>
                 <p className="careeasy-balanced-text text-xs sm:text-sm font-bold gleading-5 text-[var(--care-muted)] sm:leading-6">
