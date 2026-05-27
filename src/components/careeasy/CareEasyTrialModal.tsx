@@ -292,7 +292,7 @@ export function CareEasyTrialModal() {
                 <p className="careeasy-balanced-text mt-1.5 text-xs sm:text-sm leading-5 text-[var(--care-muted)] sm:mt-2 sm:leading-6">
                   전화번호 또는 이메일만 남기면, 무료 체험 안내를 보내드립니다.
                 </p>
-                <p className="careeasy-balanced-text text-xs sm:text-sm leading-5 text-[var(--care-muted)] sm:leading-6">
+                <p className="careeasy-balanced-text text-xs sm:text-sm font-bold leading-5 text-[var(--care-muted)] sm:leading-6">
                   무료 체험 안내 외에 광고, 홍보성 연락은 일절 보내지 않습니다.
                 </p>
               </div>
