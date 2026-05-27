@@ -23,9 +23,8 @@ declare global {
 export const careEasyEvents = {
   introPrimaryClick: "careeasy_intro_primary_click",
   introSecondaryClick: "careeasy_intro_secondary_click",
-  trialClick: "trial_click",
-  headerTrialClick: "trial_click",
-  trialStartClick: "trial_click",
+  headerTrialClick: "careeasy_header_trial_click",
+  trialStartClick: "careeasy_trial_start_click",
   kakaoOpenChatClick: "careeasy_kakao_open_chat_click",
 
   trialModalOpen: "careeasy_trial_modal_open",
@@ -37,10 +36,10 @@ export const careEasyEvents = {
 
 /** Meta Pixel 표준 이벤트로 매핑할 CareEasy 이벤트입니다. */
 const metaPixelStandardEvents: Partial<
-  Record<string, "Lead" | "careeasy_kakao_open_chat_click" | "CompleteRegistration">
+  Record<string, "Lead" | "Contact" | "CompleteRegistration">
 > = {
   [careEasyEvents.trialSubmitSuccess]: "Lead",
-  [careEasyEvents.kakaoOpenChatClick]: "careeasy_kakao_open_chat_click",
+  [careEasyEvents.kakaoOpenChatClick]: "Contact",
   [careEasyEvents.trialModalOpen]: "CompleteRegistration",
 };
 

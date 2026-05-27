@@ -265,38 +265,52 @@ export function CareEasyTrialModal() {
             aria-hidden="true"
           />
 
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="careeasy-kicker">1개월 무료 체험</p>
-
-              <h2
-                id="careeasy-trial-modal-title"
-                className="careeasy-balanced-text mt-2 text-lg font-bold leading-tight tracking-tight text-[var(--care-text)] sm:mt-3 sm:text-2xl"
+          <div className="flex items-start justify-between flex-col gap-3">
+            <div className='flex items-start justify-between w-full'>
+              <div className='flex flex-col'>
+                <p className="careeasy-kicker">1개월 무료 체험</p>
+                <h2
+                  id="careeasy-trial-modal-title"
+                  className="careeasy-balanced-text mt-2 text-lg font-bold leading-tight tracking-tight text-[var(--care-text)] sm:mt-3 sm:text-2xl"
+                >
+                  {isPrivacyTermsOpen
+                    ? '개인정보 처리 약관'
+                    : '케어이지 무료 체험을 안내해드릴게요.'}
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={closeModal}
+                aria-label="무료 체험 신청 모달 닫기"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--care-border-soft)] bg-white/72 text-[var(--care-muted)] transition hover:bg-white hover:text-[var(--care-text)] sm:h-10 sm:w-10"
               >
-                {isPrivacyTermsOpen
-                  ? '개인정보 처리 약관'
-                  : '케어이지 무료 체험을 안내해드릴게요.'}
-              </h2>
-
-              {!isPrivacyTermsOpen ? (
-                <p className="careeasy-balanced-text mt-1.5 text-sm leading-5 text-[var(--care-muted)] sm:mt-2 sm:leading-6">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            {!isPrivacyTermsOpen ? (
+              <div className='flex flex-col gap-1'>
+                <p className="careeasy-balanced-text mt-1.5 text-xs sm:text-sm leading-5 text-[var(--care-muted)] sm:mt-2 sm:leading-6">
                   전화번호 또는 이메일만 남기면, 무료 체험 안내를 보내드립니다.
                 </p>
-              ) : (
-                <p className="careeasy-balanced-text mt-1.5 text-sm leading-5 text-[var(--care-muted)]">
-                  아래 내용을 확인한 뒤 신청 화면에서 동의해 주세요.
+                <p className="careeasy-balanced-text text-xs sm:text-sm leading-5 text-[var(--care-muted)] sm:leading-6">
+                  무료 체험 안내 외에 광고, 홍보성 연락은 일절 보내지 않습니다.
                 </p>
-              )}
-            </div>
+              </div>
+            ) : (
+              <p className="careeasy-balanced-text mt-1.5 text-sm leading-5 text-[var(--care-muted)]">
+                아래 내용을 확인한 뒤 신청 화면에서 동의해 주세요.
+              </p>
+            )}
+            {/* </div> */}
 
-            <button
+            {/* <button
               type="button"
               onClick={closeModal}
               aria-label="무료 체험 신청 모달 닫기"
               className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--care-border-soft)] bg-white/72 text-[var(--care-muted)] transition hover:bg-white hover:text-[var(--care-text)] sm:h-10 sm:w-10"
             >
               <X className="h-5 w-5" />
-            </button>
+            </button> */}
           </div>
         </div>
 
