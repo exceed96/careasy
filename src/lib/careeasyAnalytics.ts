@@ -27,6 +27,7 @@ export const careEasyEvents = {
   trialStartClick: "careeasy_trial_start_click",
   kakaoOpenChatClick: "careeasy_kakao_open_chat_click",
 
+  trialClick: "trial_click",
   trialModalOpen: "careeasy_trial_modal_open",
   trialModalClose: "careeasy_trial_modal_close",
   trialSubmitAttempt: "careeasy_trial_submit_attempt",
